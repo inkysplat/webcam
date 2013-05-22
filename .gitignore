@@ -2,3 +2,4 @@ system/tmp/*
 webcam.jpg
 webcam/
 .DS_Store
+.sass-cache

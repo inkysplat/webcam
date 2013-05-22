@@ -1,0 +1,124 @@
+
+	@import "http://fonts.googleapis.com/css?family=Open+Sans";
+	@import "compass/reset";
+	@import "compass/css3/box-sizing";
+	@import "font";
+
+	*{ @include box-sizing(border-box); }
+
+	html, 
+	body, 
+	article{
+		height: 100%;
+		font-family: arial;
+		color: #fff;
+		font-family: 'Open Sans', sans-serif;
+		a{
+			color: #fff;
+		}
+	}
+
+	header,
+	footer{
+		position: absolute;
+		width: 100%;
+		padding: 20px;
+	}
+
+	article{
+		background: url(http://webcam.gandvclients.co.uk/webcam.jpg) no-repeat;
+		background-size: cover;
+		position: relative;
+	}
+
+	header {
+		top: 0px;
+		font-weight: bold;
+		h1{
+			font-size: 28px;
+			color: #fff;
+			font-family: arial;
+			font-weight: bold;
+		}
+	}
+
+	footer{
+		bottom: 0px;
+		time{
+			font-weight: bold;
+		}
+	}
+
+
+	.ticker,
+	.credit,
+	.controls{
+		position: absolute;
+		bottom: 0px;
+	}
+
+	.controls{
+		top:0;
+		right:0;
+		padding: 20px;
+		ul{
+			li{
+				margin-left: 4px;
+				a{
+					display: block;
+					background: rgba(255,255,255,.3);
+					text-decoration: none;
+					padding: 8px 0px;
+					width: 32px;
+					text-align: center;
+					color: #fff;
+					&:hover{
+						background: rgba(255,255,255,.5);
+					}
+				}
+			}
+		}
+	}
+
+	.ticker{
+		-webkit-font-smoothing: antialiased;
+		width: 70%;
+		line-height: 24px;
+		ul{
+			li{
+				padding-bottom: 20px;
+			}
+		}
+	}
+
+	.credit{
+		right: 0;
+		padding-bottom: 20px;
+		a{
+			display: block;
+			width: 65px;
+			height: 33px;
+			background-repeat: no-repeat;
+			background-position: center;
+			text-indent: -9999px;
+			&.rp{
+				background-image: url(../img/rp.png);
+			}
+			&.gv{
+				background-image: url(../img/gv.png);	
+			}
+		}
+	}
+
+	.float{
+		li{
+			float: left;
+		}
+	}
+
+	.tweet{
+		a{
+			color: rgba(255,255,255,.4);
+			text-decoration: none;
+		}
+	}
