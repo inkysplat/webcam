@@ -13,7 +13,9 @@
         <meta name="author" content="Adam Nicholls">
         <meta name="contact" content="technical@goramandvincent.com">
         <meta name="viewport" content="width=device-width">
+	<?php if(isset($refresh_page) && $refresh_page):?>
 	<meta http-equiv="refresh" content="60">
+	<?php endif;?>
         <link rel="stylesheet" href="/css.php?bootstrap.min/bootstrap-responsive.min/font-awesome.min/style">	
     </head>
     <body>
