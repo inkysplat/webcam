@@ -6,6 +6,10 @@
 
 	*{ @include box-sizing(border-box); }
 
+	$overRGBA: rgba(255,255,255,.5);
+	$outRGBA: rgba(255,255,255,.3);
+	$gutter: 20px;
+
 	html, 
 	body, 
 	article{
@@ -15,6 +19,9 @@
 		font-family: 'Open Sans', sans-serif;
 		a{
 			color: #fff;
+			&:hover{
+				text-decoration: none;
+			}
 		}
 	}
 
@@ -22,7 +29,7 @@
 	footer{
 		position: absolute;
 		width: 100%;
-		padding: 20px;
+		padding: $gutter;
 	}
 
 	article{
@@ -60,20 +67,25 @@
 	.controls{
 		top:0;
 		right:0;
-		padding: 20px;
+		padding: $gutter;
 		ul{
 			li{
 				margin-left: 4px;
+				&.active{
+					a{
+						background: $overRGBA;
+					}
+				}
 				a{
 					display: block;
-					background: rgba(255,255,255,.3);
+					background: $outRGBA;
 					text-decoration: none;
 					padding: 8px 0px;
 					width: 32px;
 					text-align: center;
 					color: #fff;
 					&:hover{
-						background: rgba(255,255,255,.5);
+						background: $overRGBA;
 					}
 				}
 			}
@@ -86,14 +98,14 @@
 		line-height: 24px;
 		ul{
 			li{
-				padding-bottom: 20px;
+				padding-bottom: $gutter;
 			}
 		}
 	}
 
 	.credit{
 		right: 0;
-		padding-bottom: 20px;
+		padding-bottom: $gutter;
 		a{
 			display: block;
 			width: 65px;
@@ -118,7 +130,10 @@
 
 	.tweet{
 		a{
-			color: rgba(255,255,255,.4);
+			color: $outRGBA;
 			text-decoration: none;
+			&:hover{
+				color: $overRGBA;	
+			}
 		}
 	}
