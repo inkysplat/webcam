@@ -33,7 +33,8 @@ foreach($args as $arg){
 		if(!file_exists(CACHE_PATH.$config->{$arg}['cache_file'])){
 			$make_call = true;
 		}
-		if(isset($conf['timetolive'])){
+		
+		if($config->{$arg}['timetolive']){
 			if((time()-filemtime(CACHE_PATH.$config->{$arg}['cache_file'])) > $config->{$arg}['timetolive']){
 				$make_call = true;
 			}
@@ -42,6 +43,7 @@ foreach($args as $arg){
 		if($make_call){
 			$file = file_get_contents($config->{$arg}['endpoint']);
 			file_put_contents(CACHE_PATH.$config->{$arg}['cache_file'], $file);
+			chmod(CACHE_PATH.$config->{$arg}['cache_file'], 0777);
 		}else{
 			$file = file_get_contents(CACHE_PATH.$config->{$arg}['cache_file']);
 		}

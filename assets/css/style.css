@@ -1,5 +1,5 @@
 @import url(http://weloveiconfonts.com/api/?family=fontelico);
-/* line 17, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,45 +21,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../.rvm/gems/ruby-1.9.3-p374/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -345,17 +345,22 @@ footer {
 
 /* line 34, scss/style.scss */
 article {
+  background-color: #000;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  -webkit-transition: background 0.5s linear;
+  -moz-transition: background 0.5s linear;
+  -o-transition: background 0.5s linear;
+  transition: background 0.5s linear;
 }
 
-/* line 40, scss/style.scss */
+/* line 45, scss/style.scss */
 header {
   top: 0px;
   font-weight: bold;
 }
-/* line 43, scss/style.scss */
+/* line 48, scss/style.scss */
 header h1 {
   font-size: 28px;
   color: #fff;
@@ -363,16 +368,16 @@ header h1 {
   font-weight: bold;
 }
 
-/* line 51, scss/style.scss */
+/* line 56, scss/style.scss */
 footer {
   bottom: 0px;
 }
-/* line 53, scss/style.scss */
+/* line 58, scss/style.scss */
 footer time {
   font-weight: bold;
 }
 
-/* line 61, scss/style.scss */
+/* line 66, scss/style.scss */
 .ticker,
 .credit,
 .controls {
@@ -380,21 +385,21 @@ footer time {
   bottom: 0px;
 }
 
-/* line 66, scss/style.scss */
+/* line 71, scss/style.scss */
 .controls {
   top: 0;
   right: 0;
   padding: 20px;
 }
-/* line 71, scss/style.scss */
+/* line 76, scss/style.scss */
 .controls ul li {
   margin-left: 4px;
 }
-/* line 74, scss/style.scss */
+/* line 79, scss/style.scss */
 .controls ul li.active a {
   background: rgba(255, 255, 255, 0.5);
 }
-/* line 78, scss/style.scss */
+/* line 83, scss/style.scss */
 .controls ul li a {
   display: block;
   background: rgba(255, 255, 255, 0.3);
@@ -404,28 +409,28 @@ footer time {
   text-align: center;
   color: #fff;
 }
-/* line 86, scss/style.scss */
+/* line 91, scss/style.scss */
 .controls ul li a:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* line 94, scss/style.scss */
+/* line 99, scss/style.scss */
 .ticker {
   -webkit-font-smoothing: antialiased;
   width: 70%;
   line-height: 24px;
 }
-/* line 99, scss/style.scss */
+/* line 104, scss/style.scss */
 .ticker ul li {
   padding-bottom: 20px;
 }
 
-/* line 105, scss/style.scss */
+/* line 110, scss/style.scss */
 .credit {
   right: 0;
   padding: 20px;
 }
-/* line 108, scss/style.scss */
+/* line 113, scss/style.scss */
 .credit a {
   display: block;
   width: 78px;
@@ -434,26 +439,26 @@ footer time {
   background-position: center;
   text-indent: -9999px;
 }
-/* line 115, scss/style.scss */
+/* line 120, scss/style.scss */
 .credit a.rp {
   background-image: url(../img/rp.png);
 }
-/* line 118, scss/style.scss */
+/* line 123, scss/style.scss */
 .credit a.gv {
   background-image: url(../img/gv_lrg.png);
 }
 
-/* line 125, scss/style.scss */
+/* line 130, scss/style.scss */
 .float li {
   float: left;
 }
 
-/* line 131, scss/style.scss */
+/* line 136, scss/style.scss */
 .tweet a {
   color: rgba(255, 255, 255, 0.3);
   text-decoration: none;
 }
-/* line 134, scss/style.scss */
+/* line 139, scss/style.scss */
 .tweet a:hover {
   color: rgba(255, 255, 255, 0.5);
 }
