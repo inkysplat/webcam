@@ -1,5 +1,4 @@
 
-	@import "http://fonts.googleapis.com/css?family=Open+Sans";
 	@import "compass/reset";
 	@import "compass/css3/box-sizing";
 	@import "font";
@@ -33,7 +32,7 @@
 	}
 
 	article{
-		background: url(http://webcam.gandvclients.co.uk/webcam.jpg) no-repeat;
+		background-repeat: no-repeat;
 		background-size: cover;
 		position: relative;
 	}

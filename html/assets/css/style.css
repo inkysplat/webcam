@@ -1,4 +1,4 @@
-@import "http://fonts.googleapis.com/css?family=Open+Sans";
+@import url(http://weloveiconfonts.com/api/?family=fontelico);
 /* line 17, ../../../../../../.rvm/gems/ruby-1.9.3-p0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -64,6 +64,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
+/* fontelico */
+/* line 5, scss/_font.scss */
+[class*="fontelico-"]:before {
+  font-family: 'fontelico', sans-serif;
+}
+
 /*
  *  Font Awesome More
  *
@@ -78,7 +84,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /*  Font Awesome Social styles
     ------------------------------------------------------- */
-/* line 24, scss/_font.scss */
+/* line 33, scss/_font.scss */
 .icon-blogger-sign:before, .icon-blogger:before, .icon-delicious:before, .icon-dribbble-sign:before, .icon-dribbble:before, .icon-dropbox:before, .icon-drupal:before, .icon-evernote-sign:before, .icon-evernote:before, .icon-flickr-sign:before, .icon-flickr:before, .icon-forrst-sign:before, .icon-forrst:before, .icon-foursquare-sign:before, .icon-foursquare:before, .icon-git-fork:before, .icon-hacker-news:before, .icon-instagram:before, .icon-lastfm-sign:before, .icon-lastfm:before, .icon-paypal:before, .icon-picasa-sign:before, .icon-picasa:before, .icon-reddit:before, .icon-share-this-sign:before, .icon-share-this:before, .icon-skype:before, .icon-soundcloud:before, .icon-spotify:before, .icon-stack-overflow:before, .icon-tumblr-sign:before, .icon-tumblr:before, .icon-vimeo-sign:before, .icon-vimeo:before, .icon-wordpress-sign:before, .icon-wordpress:before, .icon-yelp-sign:before, .icon-yelp:before, .icon-youtube-sign:before, .icon-youtube:before {
   font-family: 'Font-Awesome-Social';
   speak: none;
@@ -100,214 +106,214 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /*  Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
     readers do not read off random characters that represent icons */
-/* line 48, scss/_font.scss */
+/* line 57, scss/_font.scss */
 .icon-dropbox:before {
   content: "\f300";
 }
 
-/* line 49, scss/_font.scss */
+/* line 58, scss/_font.scss */
 .icon-drupal:before {
   content: "\f301";
 }
 
-/* line 50, scss/_font.scss */
+/* line 59, scss/_font.scss */
 .icon-git-fork:before {
   content: "\f302";
 }
 
-/* line 51, scss/_font.scss */
+/* line 60, scss/_font.scss */
 .icon-instagram:before {
   content: "\f303";
 }
 
-/* line 52, scss/_font.scss */
+/* line 61, scss/_font.scss */
 .icon-share-this-sign:before {
   content: "\f304";
 }
 
-/* line 53, scss/_font.scss */
+/* line 62, scss/_font.scss */
 .icon-share-this:before {
   content: "\f305";
 }
 
-/* line 54, scss/_font.scss */
+/* line 63, scss/_font.scss */
 .icon-foursquare-sign:before {
   content: "\f306";
 }
 
-/* line 55, scss/_font.scss */
+/* line 64, scss/_font.scss */
 .icon-foursquare:before {
   content: "\f307";
 }
 
-/* line 56, scss/_font.scss */
+/* line 65, scss/_font.scss */
 .icon-hacker-news:before {
   content: "\f308";
 }
 
-/* line 57, scss/_font.scss */
+/* line 66, scss/_font.scss */
 .icon-skype:before {
   content: "\f309";
 }
 
-/* line 58, scss/_font.scss */
+/* line 67, scss/_font.scss */
 .icon-spotify:before {
   content: "\f30a";
 }
 
-/* line 59, scss/_font.scss */
+/* line 68, scss/_font.scss */
 .icon-soundcloud:before {
   content: "\f30b";
 }
 
-/* line 60, scss/_font.scss */
+/* line 69, scss/_font.scss */
 .icon-paypal:before {
   content: "\f30c";
 }
 
-/* line 61, scss/_font.scss */
+/* line 70, scss/_font.scss */
 .icon-youtube-sign:before {
   content: "\f30d";
 }
 
-/* line 62, scss/_font.scss */
+/* line 71, scss/_font.scss */
 .icon-youtube:before {
   content: "\f30e";
 }
 
-/* line 63, scss/_font.scss */
+/* line 72, scss/_font.scss */
 .icon-reddit:before {
   content: "\f30f";
 }
 
-/* line 65, scss/_font.scss */
+/* line 74, scss/_font.scss */
 .icon-blogger-sign:before {
   content: "\f310";
 }
 
-/* line 66, scss/_font.scss */
+/* line 75, scss/_font.scss */
 .icon-blogger:before {
   content: "\f311";
 }
 
-/* line 67, scss/_font.scss */
+/* line 76, scss/_font.scss */
 .icon-dribbble-sign:before {
   content: "\f312";
 }
 
-/* line 68, scss/_font.scss */
+/* line 77, scss/_font.scss */
 .icon-dribbble:before {
   content: "\f313";
 }
 
-/* line 69, scss/_font.scss */
+/* line 78, scss/_font.scss */
 .icon-evernote-sign:before {
   content: "\f314";
 }
 
-/* line 70, scss/_font.scss */
+/* line 79, scss/_font.scss */
 .icon-evernote:before {
   content: "\f315";
 }
 
-/* line 71, scss/_font.scss */
+/* line 80, scss/_font.scss */
 .icon-flickr-sign:before {
   content: "\f316";
 }
 
-/* line 72, scss/_font.scss */
+/* line 81, scss/_font.scss */
 .icon-flickr:before {
   content: "\f317";
 }
 
-/* line 73, scss/_font.scss */
+/* line 82, scss/_font.scss */
 .icon-forrst-sign:before {
   content: "\f318";
 }
 
-/* line 74, scss/_font.scss */
+/* line 83, scss/_font.scss */
 .icon-forrst:before {
   content: "\f319";
 }
 
-/* line 75, scss/_font.scss */
+/* line 84, scss/_font.scss */
 .icon-delicious:before {
   content: "\f31a";
 }
 
-/* line 76, scss/_font.scss */
+/* line 85, scss/_font.scss */
 .icon-lastfm-sign:before {
   content: "\f31b";
 }
 
-/* line 77, scss/_font.scss */
+/* line 86, scss/_font.scss */
 .icon-lastfm:before {
   content: "\f31c";
 }
 
-/* line 78, scss/_font.scss */
+/* line 87, scss/_font.scss */
 .icon-picasa-sign:before {
   content: "\f31d";
 }
 
-/* line 79, scss/_font.scss */
+/* line 88, scss/_font.scss */
 .icon-picasa:before {
   content: "\f31e";
 }
 
-/* line 81, scss/_font.scss */
+/* line 90, scss/_font.scss */
 .icon-stack-overflow:before {
   content: "\f320";
 }
 
-/* line 82, scss/_font.scss */
+/* line 91, scss/_font.scss */
 .icon-tumblr-sign:before {
   content: "\f321";
 }
 
-/* line 83, scss/_font.scss */
+/* line 92, scss/_font.scss */
 .icon-tumblr:before {
   content: "\f322";
 }
 
-/* line 84, scss/_font.scss */
+/* line 93, scss/_font.scss */
 .icon-vimeo-sign:before {
   content: "\f323";
 }
 
-/* line 85, scss/_font.scss */
+/* line 94, scss/_font.scss */
 .icon-vimeo:before {
   content: "\f324";
 }
 
-/* line 86, scss/_font.scss */
+/* line 95, scss/_font.scss */
 .icon-wordpress-sign:before {
   content: "\f325";
 }
 
-/* line 87, scss/_font.scss */
+/* line 96, scss/_font.scss */
 .icon-wordpress:before {
   content: "\f326";
 }
 
-/* line 88, scss/_font.scss */
+/* line 97, scss/_font.scss */
 .icon-yelp-sign:before {
   content: "\f327";
 }
 
-/* line 89, scss/_font.scss */
+/* line 98, scss/_font.scss */
 .icon-yelp:before {
   content: "\f328";
 }
 
-/* line 7, scss/style.scss */
+/* line 6, scss/style.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 15, scss/style.scss */
+/* line 14, scss/style.scss */
 html,
 body,
 article {
@@ -316,20 +322,20 @@ article {
   color: #fff;
   font-family: 'Open Sans', sans-serif;
 }
-/* line 20, scss/style.scss */
+/* line 19, scss/style.scss */
 html a,
 body a,
 article a {
   color: #fff;
 }
-/* line 22, scss/style.scss */
+/* line 21, scss/style.scss */
 html a:hover,
 body a:hover,
 article a:hover {
   text-decoration: none;
 }
 
-/* line 29, scss/style.scss */
+/* line 28, scss/style.scss */
 header,
 footer {
   position: absolute;
@@ -337,19 +343,19 @@ footer {
   padding: 20px;
 }
 
-/* line 35, scss/style.scss */
+/* line 34, scss/style.scss */
 article {
-  background: url(http://webcam.gandvclients.co.uk/webcam.jpg) no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
 
-/* line 41, scss/style.scss */
+/* line 40, scss/style.scss */
 header {
   top: 0px;
   font-weight: bold;
 }
-/* line 44, scss/style.scss */
+/* line 43, scss/style.scss */
 header h1 {
   font-size: 28px;
   color: #fff;
@@ -357,16 +363,16 @@ header h1 {
   font-weight: bold;
 }
 
-/* line 52, scss/style.scss */
+/* line 51, scss/style.scss */
 footer {
   bottom: 0px;
 }
-/* line 54, scss/style.scss */
+/* line 53, scss/style.scss */
 footer time {
   font-weight: bold;
 }
 
-/* line 62, scss/style.scss */
+/* line 61, scss/style.scss */
 .ticker,
 .credit,
 .controls {
@@ -374,21 +380,21 @@ footer time {
   bottom: 0px;
 }
 
-/* line 67, scss/style.scss */
+/* line 66, scss/style.scss */
 .controls {
   top: 0;
   right: 0;
   padding: 20px;
 }
-/* line 72, scss/style.scss */
+/* line 71, scss/style.scss */
 .controls ul li {
   margin-left: 4px;
 }
-/* line 75, scss/style.scss */
+/* line 74, scss/style.scss */
 .controls ul li.active a {
   background: rgba(255, 255, 255, 0.5);
 }
-/* line 79, scss/style.scss */
+/* line 78, scss/style.scss */
 .controls ul li a {
   display: block;
   background: rgba(255, 255, 255, 0.3);
@@ -398,28 +404,28 @@ footer time {
   text-align: center;
   color: #fff;
 }
-/* line 87, scss/style.scss */
+/* line 86, scss/style.scss */
 .controls ul li a:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* line 95, scss/style.scss */
+/* line 94, scss/style.scss */
 .ticker {
   -webkit-font-smoothing: antialiased;
   width: 70%;
   line-height: 24px;
 }
-/* line 100, scss/style.scss */
+/* line 99, scss/style.scss */
 .ticker ul li {
   padding-bottom: 20px;
 }
 
-/* line 106, scss/style.scss */
+/* line 105, scss/style.scss */
 .credit {
   right: 0;
   padding-bottom: 20px;
 }
-/* line 109, scss/style.scss */
+/* line 108, scss/style.scss */
 .credit a {
   display: block;
   width: 65px;
@@ -428,26 +434,26 @@ footer time {
   background-position: center;
   text-indent: -9999px;
 }
-/* line 116, scss/style.scss */
+/* line 115, scss/style.scss */
 .credit a.rp {
   background-image: url(../img/rp.png);
 }
-/* line 119, scss/style.scss */
+/* line 118, scss/style.scss */
 .credit a.gv {
   background-image: url(../img/gv.png);
 }
 
-/* line 126, scss/style.scss */
+/* line 125, scss/style.scss */
 .float li {
   float: left;
 }
 
-/* line 132, scss/style.scss */
+/* line 131, scss/style.scss */
 .tweet a {
   color: rgba(255, 255, 255, 0.3);
   text-decoration: none;
 }
-/* line 135, scss/style.scss */
+/* line 134, scss/style.scss */
 .tweet a:hover {
   color: rgba(255, 255, 255, 0.5);
 }
