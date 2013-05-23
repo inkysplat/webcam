@@ -3,6 +3,7 @@
 		<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 		<script src="/assets/js/vendor/bootstrap.min.js"></script>
 		<script src="/assets/js/vendor/modernizer-2.6.2.min.js"></script>
+		<script src="/image_list.php<?= isset($_GET['date'])?'?date='.$_GET['date']:'';?>"></script>
 		<script src="/assets/js/script.js"></script>
 		<script>
 			var _gaq = [['_setAccount', ''], ['_trackPageview']];

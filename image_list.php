@@ -42,14 +42,25 @@ if($files && is_array($files))
 		ob_end_clean();
 
 		$i = 0;
-		header('Content-type: application/javascript;');
-		ob_start();
-		echo "\nvar images = new Array();";
-		foreach($images as $image)
+		if(isset($_GET) && $_GET['format'])
 		{
-			echo "\nimages[".$i++."] = '".DIR_SEP.'webcam'.DIR_SEP.$date_path.DIR_SEP.$image."'";
+			$paths = array();
+			foreach($images as $image)
+			{
+				$paths[] = DIR_SEP.'webcam'.DIR_SEP.$date_path.DIR_SEP.$image;
+			}
+
+			die(json_encode($paths));
+		}else{
+			header('Content-type: application/javascript;');
+			ob_start();
+			echo "\nvar images = new Array();";
+			foreach($images as $image)
+			{
+				echo "\nimages[".$i++."] = '".DIR_SEP.'webcam'.DIR_SEP.$date_path.DIR_SEP.$image."'";
+			}
+			die(ob_get_clean());
 		}
-		die(ob_get_clean());
 	}
 
 }
