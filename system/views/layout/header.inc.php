@@ -16,7 +16,10 @@
 	<?php if(isset($refresh_page) && $refresh_page):?>
 	   <meta http-equiv="refresh" content="60">   
 	<?php endif;?>
-        <link rel="stylesheet" href="/css.php?bootstrap.min/bootstrap-responsive.min/font-awesome.min/style">	
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="/assets/css/bootstrap-responsive.min.css"> 
+        <link rel="stylesheet" href="/assets/css/font-awesome.min.css"> 
+        <link rel="stylesheet" href="/assets/css/style.css">	
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>

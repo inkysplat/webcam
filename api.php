@@ -50,3 +50,13 @@ foreach($args as $arg){
 	}
 }
 
+if($_SERVER['QUERY_STRING'] && !empty($_SERVER['QUERY_STRING']))
+{
+	$json = array();
+	foreach($calls as $api=>$call){
+		$json[$api] = json_decode($call);
+	}
+
+	die(json_encode($json));
+}
+
