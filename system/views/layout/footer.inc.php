@@ -1,7 +1,7 @@
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/js.php?jquery-1.9.1.min"><\/script>')</script>
-		<script src="/js.php?bootstrap.min/html5shiv/script"></script>
+		<script src="/js.php?bootstrap.min/modernizer-2.6.2.min/script"></script>
 		<script>
 			var _gaq = [['_setAccount', ''], ['_trackPageview']];
 			( function(d, t) {
