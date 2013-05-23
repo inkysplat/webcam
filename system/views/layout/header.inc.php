@@ -16,9 +16,7 @@
 	<?php if(isset($refresh_page) && $refresh_page):?>
 	   <meta http-equiv="refresh" content="60">   
 	<?php endif;?>
-        <link rel="stylesheet" href="/assets/css/bootstrap.min.css"> 
-        <link rel="stylesheet" href="/assets/css/bootstrap-responsive.min.css"> 
-        <link rel="stylesheet" href="/assets/css/font-awesome.min.css"> 
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/assets/css/style.css">	
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
