@@ -104,11 +104,11 @@
 
 	.credit{
 		right: 0;
-		padding-bottom: $gutter;
+		padding: $gutter;
 		a{
 			display: block;
-			width: 65px;
-			height: 33px;
+			width: 78px;
+			height: 66px;
 			background-repeat: no-repeat;
 			background-position: center;
 			text-indent: -9999px;
@@ -116,7 +116,7 @@
 				background-image: url(../img/rp.png);
 			}
 			&.gv{
-				background-image: url(../img/gv.png);	
+				background-image: url(../img/gv_lrg.png);	
 			}
 		}
 	}

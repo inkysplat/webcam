@@ -84,7 +84,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /*  Font Awesome Social styles
     ------------------------------------------------------- */
-/* line 33, scss/_font.scss */
+/* line 32, scss/_font.scss */
 .icon-blogger-sign:before, .icon-blogger:before, .icon-delicious:before, .icon-dribbble-sign:before, .icon-dribbble:before, .icon-dropbox:before, .icon-drupal:before, .icon-evernote-sign:before, .icon-evernote:before, .icon-flickr-sign:before, .icon-flickr:before, .icon-forrst-sign:before, .icon-forrst:before, .icon-foursquare-sign:before, .icon-foursquare:before, .icon-git-fork:before, .icon-hacker-news:before, .icon-instagram:before, .icon-lastfm-sign:before, .icon-lastfm:before, .icon-paypal:before, .icon-picasa-sign:before, .icon-picasa:before, .icon-reddit:before, .icon-share-this-sign:before, .icon-share-this:before, .icon-skype:before, .icon-soundcloud:before, .icon-spotify:before, .icon-stack-overflow:before, .icon-tumblr-sign:before, .icon-tumblr:before, .icon-vimeo-sign:before, .icon-vimeo:before, .icon-wordpress-sign:before, .icon-wordpress:before, .icon-yelp-sign:before, .icon-yelp:before, .icon-youtube-sign:before, .icon-youtube:before {
   font-family: 'Font-Awesome-Social';
   speak: none;
@@ -106,202 +106,202 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /*  Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
     readers do not read off random characters that represent icons */
-/* line 57, scss/_font.scss */
+/* line 56, scss/_font.scss */
 .icon-dropbox:before {
   content: "\f300";
 }
 
-/* line 58, scss/_font.scss */
+/* line 57, scss/_font.scss */
 .icon-drupal:before {
   content: "\f301";
 }
 
-/* line 59, scss/_font.scss */
+/* line 58, scss/_font.scss */
 .icon-git-fork:before {
   content: "\f302";
 }
 
-/* line 60, scss/_font.scss */
+/* line 59, scss/_font.scss */
 .icon-instagram:before {
   content: "\f303";
 }
 
-/* line 61, scss/_font.scss */
+/* line 60, scss/_font.scss */
 .icon-share-this-sign:before {
   content: "\f304";
 }
 
-/* line 62, scss/_font.scss */
+/* line 61, scss/_font.scss */
 .icon-share-this:before {
   content: "\f305";
 }
 
-/* line 63, scss/_font.scss */
+/* line 62, scss/_font.scss */
 .icon-foursquare-sign:before {
   content: "\f306";
 }
 
-/* line 64, scss/_font.scss */
+/* line 63, scss/_font.scss */
 .icon-foursquare:before {
   content: "\f307";
 }
 
-/* line 65, scss/_font.scss */
+/* line 64, scss/_font.scss */
 .icon-hacker-news:before {
   content: "\f308";
 }
 
-/* line 66, scss/_font.scss */
+/* line 65, scss/_font.scss */
 .icon-skype:before {
   content: "\f309";
 }
 
-/* line 67, scss/_font.scss */
+/* line 66, scss/_font.scss */
 .icon-spotify:before {
   content: "\f30a";
 }
 
-/* line 68, scss/_font.scss */
+/* line 67, scss/_font.scss */
 .icon-soundcloud:before {
   content: "\f30b";
 }
 
-/* line 69, scss/_font.scss */
+/* line 68, scss/_font.scss */
 .icon-paypal:before {
   content: "\f30c";
 }
 
-/* line 70, scss/_font.scss */
+/* line 69, scss/_font.scss */
 .icon-youtube-sign:before {
   content: "\f30d";
 }
 
-/* line 71, scss/_font.scss */
+/* line 70, scss/_font.scss */
 .icon-youtube:before {
   content: "\f30e";
 }
 
-/* line 72, scss/_font.scss */
+/* line 71, scss/_font.scss */
 .icon-reddit:before {
   content: "\f30f";
 }
 
-/* line 74, scss/_font.scss */
+/* line 73, scss/_font.scss */
 .icon-blogger-sign:before {
   content: "\f310";
 }
 
-/* line 75, scss/_font.scss */
+/* line 74, scss/_font.scss */
 .icon-blogger:before {
   content: "\f311";
 }
 
-/* line 76, scss/_font.scss */
+/* line 75, scss/_font.scss */
 .icon-dribbble-sign:before {
   content: "\f312";
 }
 
-/* line 77, scss/_font.scss */
+/* line 76, scss/_font.scss */
 .icon-dribbble:before {
   content: "\f313";
 }
 
-/* line 78, scss/_font.scss */
+/* line 77, scss/_font.scss */
 .icon-evernote-sign:before {
   content: "\f314";
 }
 
-/* line 79, scss/_font.scss */
+/* line 78, scss/_font.scss */
 .icon-evernote:before {
   content: "\f315";
 }
 
-/* line 80, scss/_font.scss */
+/* line 79, scss/_font.scss */
 .icon-flickr-sign:before {
   content: "\f316";
 }
 
-/* line 81, scss/_font.scss */
+/* line 80, scss/_font.scss */
 .icon-flickr:before {
   content: "\f317";
 }
 
-/* line 82, scss/_font.scss */
+/* line 81, scss/_font.scss */
 .icon-forrst-sign:before {
   content: "\f318";
 }
 
-/* line 83, scss/_font.scss */
+/* line 82, scss/_font.scss */
 .icon-forrst:before {
   content: "\f319";
 }
 
-/* line 84, scss/_font.scss */
+/* line 83, scss/_font.scss */
 .icon-delicious:before {
   content: "\f31a";
 }
 
-/* line 85, scss/_font.scss */
+/* line 84, scss/_font.scss */
 .icon-lastfm-sign:before {
   content: "\f31b";
 }
 
-/* line 86, scss/_font.scss */
+/* line 85, scss/_font.scss */
 .icon-lastfm:before {
   content: "\f31c";
 }
 
-/* line 87, scss/_font.scss */
+/* line 86, scss/_font.scss */
 .icon-picasa-sign:before {
   content: "\f31d";
 }
 
-/* line 88, scss/_font.scss */
+/* line 87, scss/_font.scss */
 .icon-picasa:before {
   content: "\f31e";
 }
 
-/* line 90, scss/_font.scss */
+/* line 89, scss/_font.scss */
 .icon-stack-overflow:before {
   content: "\f320";
 }
 
-/* line 91, scss/_font.scss */
+/* line 90, scss/_font.scss */
 .icon-tumblr-sign:before {
   content: "\f321";
 }
 
-/* line 92, scss/_font.scss */
+/* line 91, scss/_font.scss */
 .icon-tumblr:before {
   content: "\f322";
 }
 
-/* line 93, scss/_font.scss */
+/* line 92, scss/_font.scss */
 .icon-vimeo-sign:before {
   content: "\f323";
 }
 
-/* line 94, scss/_font.scss */
+/* line 93, scss/_font.scss */
 .icon-vimeo:before {
   content: "\f324";
 }
 
-/* line 95, scss/_font.scss */
+/* line 94, scss/_font.scss */
 .icon-wordpress-sign:before {
   content: "\f325";
 }
 
-/* line 96, scss/_font.scss */
+/* line 95, scss/_font.scss */
 .icon-wordpress:before {
   content: "\f326";
 }
 
-/* line 97, scss/_font.scss */
+/* line 96, scss/_font.scss */
 .icon-yelp-sign:before {
   content: "\f327";
 }
 
-/* line 98, scss/_font.scss */
+/* line 97, scss/_font.scss */
 .icon-yelp:before {
   content: "\f328";
 }
@@ -423,13 +423,13 @@ footer time {
 /* line 105, scss/style.scss */
 .credit {
   right: 0;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 /* line 108, scss/style.scss */
 .credit a {
   display: block;
-  width: 65px;
-  height: 33px;
+  width: 78px;
+  height: 66px;
   background-repeat: no-repeat;
   background-position: center;
   text-indent: -9999px;
@@ -440,7 +440,7 @@ footer time {
 }
 /* line 118, scss/style.scss */
 .credit a.gv {
-  background-image: url(../img/gv.png);
+  background-image: url(../img/gv_lrg.png);
 }
 
 /* line 125, scss/style.scss */
