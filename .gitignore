@@ -1,5 +1,8 @@
-system/tmp/*
-webcam.jpg
-webcam/
-.DS_Store
-.sass-cache
+.project
+cache/*
+vendor/*
+log/*
+tmp/*
+public/cameras/*
+webcam0.jpg
+webcam1.jpg
