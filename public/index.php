@@ -11,7 +11,8 @@
 
 	//get base path
 	$public_dir = realpath(dirname(__FILE__));
-	define('BASE_PATH',$public_dir.DIR_SEP.'..'.DIR_SEP);
+	define('BASE_PATH',$public_dir.DIR_SEP.'..'.DIR_SEP.'system'.DIR_SEP);
+	define('PUBLIC_PATH', $public_dir.DIR_SEP);
 
 	//kick everything off...
 	require_once(BASE_PATH.'bootstrap.php');
