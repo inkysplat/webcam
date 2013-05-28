@@ -1,5 +1,7 @@
 .project
 
+system/application/config/default.xml
+
 system/cache/*
 system/log/*
 system/tmp/*
