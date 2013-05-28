@@ -64,7 +64,7 @@ Class CameraController extends Controller
 	public function listAction()
 	{
 
-		$this->defaultViewType = 'plain';
+		$this->defaultViewType = 'javascript';
 
 		$date = date('Y-m-d');
 
