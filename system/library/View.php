@@ -93,7 +93,7 @@ Class View
             throw new Exception(__METHOD__."::Missing Footer File in Layouts Directory");
         }
 
-        array_push($this->_viewStack, $this->partial('layouts/header', $this->params));
+        array_push($this->_viewStack, $this->partial('layouts/footer', $this->params));
 	}
 
 }
