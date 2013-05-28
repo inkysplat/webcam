@@ -236,7 +236,7 @@ class Cache
         $this->_cache_mem[$name]['time']  = time();
         if($ttl > 0)
         {
-            $this->_cache_mem['ttl'] = (int)$ttl;
+            $this->_cache_mem[$name]['ttl'] = (int)$ttl;
         }
     }
 
@@ -272,13 +272,18 @@ class Cache
             $filename = self::$_instance->_getCacheFilename();
             if($cached = self::$_instance->_readCache($filename))
             {
-                if($cached[$name])
+                if(isset($cached[$name]) && $cached[$name])
                 {
-                    if(isset($cached[$name]['ttl']) && $cached[$name]['ttl'] > 0)
+                    $cached = $cached[$name];
+                }
+
+                if($cached['value'])
+                {
+                    if(isset($cached['ttl']) && $cached['ttl'] > 0)
                     {
-                        if(isset($cached[$name]['time']))
+                        if(isset($cached['time']))
                         {
-                            if((time()-$cached[$name]['time']) > $cached[$name]['ttl'])
+                            if((time()-$cached['time']) > $cached['ttl'])
                             {
                                 return false;
                             }
@@ -287,7 +292,7 @@ class Cache
 
                     $this->_cache_mem = array_merge($this->_cache_mem,$cached);
 
-                    return $cached[$name]['value'];
+                    return $cached['value'];
                 }
             }
         }
@@ -352,6 +357,11 @@ class Cache
         if(empty($raw_data) || $raw_data == '')
         {
             throw new Exception(__METHOD__."::Cannot save empty data");
+        }
+
+        if(file_exists($this->_cache_dir.DIR_SEP.$filename))
+        {
+            unlink($this->_cache_dir.DIR_SEP.$filename);
         }
 
         if(!file_exists($this->_cache_dir.DIR_SEP.$filename))

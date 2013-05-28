@@ -21,8 +21,8 @@ Class View
 		switch($type)
 		{
 			case 'json':
-
-				header('Content-type: application/json;charset=utf');
+				ob_end_clean();
+				header('Content-type: application/json;');
 				ob_start();
 				foreach($this->_viewStack as $view)
 				{

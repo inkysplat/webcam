@@ -22,6 +22,12 @@ function nextImage(index)
 			index++;
 			setTimeout(function(){nextImage(index)},190);
 		}
+
+		if(!stop_play)
+		{
+			stop_play = true;
+			return true;
+		}
 	}
 }
 
@@ -34,6 +40,9 @@ $('#stop').click(function(e){
 });
 
 $('#play').click(function(e){
-	$('#image-date').html(orginal_date);
-	$('article').css({'background-image':'url(/webcam.jpg)'});
+	if(preload.length == num_of_images)
+	{
+		$('#image-date').html(orginal_date);
+		$('article').css({'background-image':'url(/webcam.jpg)'});
+	}
 });

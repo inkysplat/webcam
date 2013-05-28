@@ -15,7 +15,18 @@ Class IndexController extends Controller{
 
 		$data = $this->_loadAPI();
 
-		$this->viewParams['data'] = $data[$service];
+		if($service != '')
+		{
+			if(substr($service,-5) == '.json')
+			{
+				$service = substr($service,0,-5);
+			}
+
+			$this->viewParams['data'] = $data[$service];
+		}else{
+			$this->viewParams['data'] = $data;
+		}
+
 		$this->defaultViewType = 'json';
 	}
 
