@@ -18,7 +18,11 @@ Class View
 
 	public function render($type = 'html')
 	{
-		ob_end_clean();
+		if(ob_get_level() >= 1)
+		{
+			ob_end_clean();
+		}
+
 		switch($type)
 		{
 			case 'javascript':

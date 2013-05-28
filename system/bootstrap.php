@@ -4,11 +4,9 @@
 define('APP_PATH', realpath(BASE_PATH . 'application') . DIR_SEP);
 define('INCLUDE_PATH', realpath(BASE_PATH . 'includes') . DIR_SEP);
 define('LIBRARY_PATH', realpath(BASE_PATH . 'library') . DIR_SEP);
+define('PUBLIC_PATH', realpath(BASE_PATH . 'public') . DIR_SEP);
 define('CACHE_PATH', realpath(BASE_PATH . 'cache') . DIR_SEP);
 define('VENDOR_PATH', realpath(BASE_PATH . 'vendor') . DIR_SEP);
-
-if(!defined('PUBLIC_PATH'))
-    define('PUBLIC_PATH', realpath(BASE_PATH . 'public') . DIR_SEP);
 
 //application directory paths
 define('CONTROLLER_PATH', realpath(APP_PATH . 'controllers') . DIR_SEP);
@@ -42,6 +40,14 @@ if (defined('DOCTRINE_VER') && DOCTRINE_VER != '')
         $add_includes[] = DOCTRINE_PATH;
     }
 }
+
+$env = 'prod';
+if(stripos($_SERVER['HTTP_HOST'],'dev') === FALSE)
+{
+    $env = 'dev';
+    ini_set('display_errors','On');
+}
+define('ENVIRONMENT',$env);
 
 //load the paths into global for the autoloader
 $GLOBALS['AUTOLOAD_PATHS'] = $add_includes;

@@ -3,7 +3,7 @@
 	//echo "<pre>";
 
 	//error reporting
-	ini_set('display_errors','On');
+	ini_set('display_errors','Off');
 	error_reporting(-1);
 
 	//directory separator shorthand
