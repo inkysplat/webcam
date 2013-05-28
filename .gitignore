@@ -1,8 +1,8 @@
 .project
-cache/*
-vendor/*
-log/*
-tmp/*
-public/cameras/*
-webcam0.jpg
-webcam1.jpg
+
+system/cache/*
+system/log/*
+system/tmp/*
+
+public_html/webcam/*
+public_html/webcam.jpg
