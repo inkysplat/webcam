@@ -46,8 +46,8 @@ Class CameraController extends Controller
 			}
 
 			$insert = array(
-				'filename' 	=> basename($destination),
-				'path' 		=> $destination,
+				'filename' 	=> basename($archive),
+				'path' 		=> $archive,
 				'hash' 		=> md5(readfile($destination)),
 				'size' 		=> $_FILES['filedata']['size'],
 				'mime_type' => $_FILES['filedata']['type'],
