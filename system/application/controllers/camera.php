@@ -31,7 +31,7 @@ Class CameraController extends Controller
 
 				$archive = PUBLIC_PATH.'webcam'.DIR_SEP;
 				$archive .= date('Y').DIR_SEP.date('m').DIR_SEP.date('d');
-				$archive .= DIR_SEP.'video0-'.date('Ymd-His').'.jpg';
+				$archive .= DIR_SEP.'video0-'.date('Ymd-Hi').'.jpg';
 
 				$archive_path = dirname($archive);
 				if(!is_dir($archive_path))
