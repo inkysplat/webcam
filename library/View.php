@@ -18,36 +18,33 @@ Class View
 
 	public function render($type = 'html')
 	{
+		ob_end_clean();
 		switch($type)
 		{
+			case 'javascript':
+				header('Content-type: application/javascript;');
+				break;
+			case 'plain':
+				header('Content-type: plain/text;');
+				break;
 			case 'json':
-				ob_end_clean();
 				header('Content-type: application/json;');
-				ob_start();
-				foreach($this->_viewStack as $view)
-				{
-					$view->setParams($this->params);
-					echo $view->render();
-				}
-				return ob_get_clean();
-
 				break;
 			case 'html':
-			default:
-
 				$this->header();
 				$this->footer();
 
 				header('Content-type: text/html;');
-				ob_start();
-				foreach($this->_viewStack as $view)
-				{
-					$view->setParams($this->params);
-					echo $view->render();
-				}
-				return ob_get_clean();
 				break;
 		}
+
+		ob_start();
+		foreach($this->_viewStack as $view)
+		{
+			$view->setParams($this->params);
+			echo $view->render();
+		}
+		return ob_get_clean();
 
 	}
 

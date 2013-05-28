@@ -1,4 +1,4 @@
-        <article role="main" style="background-image: url(http://webcam.gandvclients.co.uk/webcam.jpg)">
+        <article role="main" style="background-image: url(/webcam.jpg)">
 			<header>
 				<h1>G+V</h1>
 				<aside class="controls">
@@ -15,8 +15,8 @@
 				<aside class="ticker">
 					<ul>
 						<li><span title="mood" class="mood"><i class="fontelico-emo-wink"></i></span></li>
-						<li><span class="tweet"><?= $lastfm['recenttracks']['track']['artist']['#text'].' - '.$lastfm['recenttracks']['track']['name']?> <a href="http://www.last.fm/user/goramandvincent/"><i class="icon-lastfm-sign"></i></a></span></li>
-						<li><span class="tweet"><?= $twitter[0]['text'];?> <a href="http://www.twitter.com/goramandvincent"><i class="icon-twitter-sign"></i></a></span></li>
+						<li><span class="tweet"><?= $lastfm ?> <a href="http://www.last.fm/user/goramandvincent/"><i class="icon-lastfm-sign"></i></a></span></li>
+						<li><span class="tweet"><?= $twitter;?> <a href="http://www.twitter.com/goramandvincent"><i class="icon-twitter-sign"></i></a></span></li>
 						<li><time><i id="image-date" class="icon-time"></i> <?= date('Y-m-d H:i:s', filemtime('webcam.jpg'));?></time></li>
 						<li>Built with <a href="">Raspberry PI</a> | <a href="#">Share</a></li>
 					</ul>

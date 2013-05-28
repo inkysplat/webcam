@@ -2,13 +2,49 @@
 
 Class IndexController extends Controller{
 
+	public function __construct($deps)
+	{
+		parent::__construct($deps);
+	}
+
 	public function indexAction(){
 		$this->viewParams['refresh'] = true;
 
 		$api = $this->_loadAPI();
 
-		$this->viewParams['lastfm'] = $api['lastfm'];
-		$this->viewParams['twitter'] = $api['twitter'];
+		if(isset($api['lastfm']))
+		{
+			if(isset($api['lastfm']['recenttracks']['track']['artist']))
+			{
+				$artist = $api['lastfm']['recenttracks']['track']['artist']['#text'];
+			}else{
+				if(isset($api['lastfm']['recenttracks']['track'][0]['artist']))
+				{
+					$artist = $api['lastfm']['recenttracks']['track'][0]['artist']['#text'];
+				}
+			}
+
+			if(isset($api['lastfm']['recenttracks']['track']['name']))
+			{
+				$track = $api['lastfm']['recenttracks']['track']['name'];
+			}else{
+				if(isset($api['lastfm']['recenttracks']['track'][0]['name']))
+				{
+					$track = $api['lastfm']['recenttracks']['track'][0]['name'];
+				}
+			}
+
+			$this->viewParams['lastfm'] = $artist.' - '.$track;
+		}
+
+		if(isset($api['twitter']))
+		{
+			if(isset($api['twitter'][0]['text']))
+			{
+				$this->viewParams['twitter'] = $api['twitter'][0]['text'];
+			}
+		}
+
 	}
 
 	public function apiAction($service = ''){
@@ -38,35 +74,34 @@ Class IndexController extends Controller{
 		$config->ini('api');
 		$data = array();
 
-		$lastfm = $config->get('lastfm');
-		$cache->setCacheFilename($lastfm['cache_file']);
+		$api = array('lastfm','twitter');
 
-		if(!($data['lastfm'] = $cache->getCache('lastfm')))
+		foreach($api as $name)
 		{
-			$file = file_get_contents($lastfm['endpoint']);
-			$data['lastfm'] = json_decode($file,true);
+			//get config
+			$a = $config->get($name);
+			//set cache file
+			$cache->setCacheFilename($a['cache_file']);
 
-			$cache->setCache('lastfm',$data['lastfm'],$lastfm['timetolive']);
-			$cache->writeCache();
+			//empty data
+			if(!($data[$name] = $cache->getCache($name)))
+			{
+				$file = file_get_contents($a['endpoint']);
+				$data[$name] = json_decode($file,true);
 
-			$cache->writeRaw($lastfm['cache_file'], $file);
-		}
+				$cache->setCache($name,$data[$name],$a['timetolive']);
+				$cache->writeCache();
 
-		$twitter = $config->get('twitter');
-		$cache->setCacheFilename($twitter['cache_file']);
+				$cache->writeRaw($a['cache_file'], $file);
 
-		if(!($data['twitter'] = $cache->getCache('twitter')))
-		{
-			$file = file_get_contents($twitter['endpoint']);
-			$data['twitter'] = json_decode($file,true);
-
-			$cache->setCache('twitter',$data['twitter'],$twitter['timetolive']);
-			$cache->writeCache();
-
-			$cache->writeRaw($twitter['cache_file'],$file);
+				$this->_db->update('api_cache', 
+					array(
+						'hash'=>md5($file),
+						'datetime'=>date('Y-m-d H:i:s')), 
+					array('api_name' => $name));
+			}
 		}
 
 		return $data;
-
 	}
 }

@@ -43,8 +43,8 @@ class Doctrine
     private $_defaultParams = array(
         'dbname'   => 'information_schema',
         'user'     => 'root',
-        'password' => '1094lunar',
-        'host'     => '192.168.1.41',
+        'password' => '',
+        'host'     => 'localhost',
         'driver'   => 'pdo_mysql',
     );
 
@@ -111,6 +111,13 @@ class Doctrine
 
         if (!empty($params))
         {
+            foreach($params as &$param)
+            {
+                if(is_array($param) && empty($param)){
+                    $param = '';
+                }
+            }
+
             $connectionParams = array_merge($connectionParams, $params);
         }
 

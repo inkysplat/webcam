@@ -224,6 +224,16 @@ class Request
         
         return false;
     }
+
+    public function post($name)
+    {
+        if(isset($_POST[$name]))
+        {
+            return trim($_POST[$name]);
+        }
+
+        return false;
+    }
 }
 
 

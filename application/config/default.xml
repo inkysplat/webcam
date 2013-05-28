@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <database id="database">
-        <dbname>brie-web</dbname>
+        <dbname>gv_webcam</dbname>
         <user>root</user>
         <password></password>
-        <host>127.0.0.1</host>
+        <host>localhost</host>
     </database>
     <hostpath id="environment">
-        <host_name>dev.webcam</host_name>
-        <http_host>http://dev.webcam</http_host>
+        <host_name>dev.workcam-beta</host_name>
+        <http_host>http://dev.workcam-beta/</http_host>
     </hostpath>
     <communication id="email">
-        <default_from_address>no-reply@brie-test.com</default_from_address>
-        <admin_from_address>admin@brie-test.com</admin_from_address>
+        <default_from_address>no-reply@goramandvincent.com</default_from_address>
+        <admin_from_address>admin@goramandvincent.com</admin_from_address>
         <support_address>technical@goramandvincent.com</support_address>
     </communication>
     <application id="settings">

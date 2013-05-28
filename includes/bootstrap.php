@@ -279,7 +279,14 @@ class Bootstrap
             $controller_name = ucfirst(strtolower($this->_storage['paths']['controller']));
             $controller_name = $controller_name.'Controller';
 
-            $controllerObj = new $controller_name();
+            $deps = array(
+                    'db'        => $this->_db,
+                    'cache'     => $this->_cache,
+                    'session'   => $this->_sess,
+                    'storage'   => array('global'=> $this->_storage)
+                );
+
+            $controllerObj = new $controller_name($deps);
             $controllerObj->setSiteParams();
 
             $action_name = strtolower($this->_storage['paths']['action']);
