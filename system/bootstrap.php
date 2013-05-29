@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/London');
+
 //base directory paths
 define('APP_PATH', realpath(BASE_PATH . 'application') . DIR_SEP);
 define('INCLUDE_PATH', realpath(BASE_PATH . 'includes') . DIR_SEP);

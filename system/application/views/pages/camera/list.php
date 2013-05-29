@@ -6,11 +6,21 @@ if(isset($format)):
 			echo "\nvar images = new Array();";
 			foreach($images as $image)
 			{
-				echo "\nimages[".$i++."] = '".DIR_SEP.'webcam'.DIR_SEP.$date_path.DIR_SEP.$image."'";
+				echo "\nimages[".$i++."] = ".$image['url'];
 			}
 		break;
 		case 'json':
-			echo json_encode($images);
+			if($full){
+				echo json_encode($images);
+			}else{
+				$i = array();
+				foreach($images as $image)
+				{
+					$i[] = $image['url'];
+				}
+				echo json_encode($i);
+			}
+
 			break;
 	endswitch;
 endif;
