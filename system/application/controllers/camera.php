@@ -149,14 +149,14 @@ Class CameraController extends Controller
 	{
 		if($url['url'] == null || $url['url'] == '')
 		{
-			$site_url = $_SERVER['HTTP_HOST'];
+			$site_url = 'http://'.$_SERVER['HTTP_HOST'].'/';
 
 			if(defined('PUBLIC_PATH'))
 			{
 				$url['url'] = str_replace(PUBLIC_PATH, $site_url,$url['path']);
 			}
 
-			if(strpos('/home/webcam/public_html/',$url['url']) !== false)
+			if(strpos('/home/webcam/public_html',$url['url']) !== false)
 			{
 				$url['url'] = str_replace('/home/webcam/public_html',$site_url, $url['url']);
 			}
