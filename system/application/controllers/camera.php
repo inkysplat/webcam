@@ -62,7 +62,7 @@ Class CameraController extends Controller
 					$archived = true;
 				}
 
-				$site_url = $_SERVER['HTTP_HOST'];				
+				$site_url = 'http://'.$_SERVER['HTTP_HOST'].'/';				
 				$url = str_replace(PUBLIC_PATH,$site_url,$archive);
 			}
 
