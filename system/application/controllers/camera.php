@@ -156,7 +156,7 @@ Class CameraController extends Controller
 				$url['url'] = str_replace(PUBLIC_PATH, $site_url,$url['path']);
 			}
 
-			if(strpos('/home/webcam/public_html/',$url) !== false)
+			if(strpos('/home/webcam/public_html/',$url['url']) !== false)
 			{
 				$url['url'] = str_replace('/home/webcam/public_html',$site_url, $url['url']);
 			}
