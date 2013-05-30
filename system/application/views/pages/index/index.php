@@ -18,13 +18,23 @@
 						<li><span class="tweet"><?= $lastfm ?> <a href="http://www.last.fm/user/goramandvincent/"><i class="icon-lastfm-sign"></i></a></span></li>
 						<li><span class="tweet"><?= $twitter;?> <a href="http://www.twitter.com/goramandvincent"><i class="icon-twitter-sign"></i></a></span></li>
 						<li><time><i id="image-date" class="icon-time"></i> <?= date('Y-m-d H:i:s', filemtime('webcam.jpg'));?></time></li>
-						<li>Built with <a href="">Raspberry PI</a> | <a href="#">Share</a></li>
+						<li>
+							<div style="float:left">Built with <a href="">Raspberry PI</a> | </div>
+						<!-- AddThis Button BEGIN -->
+						<div class="addthis_toolbox addthis_default_style" style="float: left; width:auto;min-width: 200px;">
+							<a class="addthis_button_preferred_1"></a>
+							<a class="addthis_button_preferred_2"></a>
+							<a class="addthis_button_preferred_3"></a>
+							<a class="addthis_button_preferred_4"></a>
+							<a class="addthis_button_compact"></a>
+							<a class="addthis_counter addthis_bubble_style"></a>
+						</div>
+						</li>
 					</ul>
 				</aside>
 				<aside class="credit">
 					<ul class="float">
 						<li><a href="" class="gv">Goram+Vincent</a></li>
-						<!-- <li><a href="" class="rp">Raspberry Pi</a></li> -->
 					</ul>
 				</aside>
 			</footer>

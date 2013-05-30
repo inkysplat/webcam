@@ -16,8 +16,9 @@
 	<?php if(isset($refresh_page) && $refresh_page):?>
 	   <meta http-equiv="refresh" content="60">   
 	<?php endif;?>
+        <link rel="icon" href="<?= SITE_URL;?>/favicon.ico" type="image/x-icon">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/css/style.css">	
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
