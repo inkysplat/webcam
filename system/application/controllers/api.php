@@ -16,14 +16,13 @@ Class ApiController extends Controller
 			$payload = $request->post('payload');
 
 			$cache = Util('Cache');
-			
+
 			$cache->writeRaw('github.json',$payload);
 
 			$cache->setCacheFilename('github.json');
 			$cache->setCache('github',json_decode($payload));
 			$cache->writeCache();
 
-			
 		}
 	}
 }
