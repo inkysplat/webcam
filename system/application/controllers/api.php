@@ -9,6 +9,9 @@ Class ApiController extends Controller
 
 	public function githubServiceHookAction()
 	{
+
+		file_put_contents(CACHE_PATH.'/github.json',print_r(array('get'=>$_GET,'post'=>$_POST,'files'=>$_FILES),true));
+
 		$request = Util('Request');
 
 		if($request->post('payload') || isset($request->params['payload']))
