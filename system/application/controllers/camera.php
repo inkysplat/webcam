@@ -124,8 +124,18 @@ Class CameraController extends Controller
 
 			switch($format)
 			{
+				case 'jsonp':
+					$this->defaultViewType = 'jsonp';
+					$this->viewParams['format'] = 'json';
+					$this->viewParams['images'] = $images;
+					$this->viewParams['full'] = false;
+					if(isset($request->params['full']) && $request->params['full'])
+					{
+						$this->viewParams['full'] = true;
+					}
+
 				case 'json':
-					$this->defaultViewType = 'json';
+					$this->defaultViewType = 'json';					
 					$this->viewParams['format'] = 'json';
 					$this->viewParams['images'] = $images;
 					$this->viewParams['full'] = false;

@@ -31,6 +31,9 @@ Class View
 			case 'plain':
 				header('Content-type: plain/text;');
 				break;
+			case 'jsonp':
+				header('Content-type: text/html;');
+				break;				
 			case 'json':
 				header('Content-type: application/json;');
 				break;
