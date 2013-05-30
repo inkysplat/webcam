@@ -30,7 +30,7 @@ Class ApiModel extends Model
 		$config->ini('api');
 		$data = array();
 
-		$api = array('lastfm','twitter');
+		$api = array('lastfm','twitter','github');
 
 		foreach($api as $name)
 		{
@@ -42,19 +42,22 @@ Class ApiModel extends Model
 			//empty data
 			if(!($data[$name] = $cache->getCache($name)))
 			{
-				//call the end point
-				$data[$name] = $this->_callEndPoint($a['endpoint']);
+				if(isset($a['endpoint']) && !empty($a['endpoint']))
+				{
+					//call the end point
+					$data[$name] = $this->_callEndPoint($a['endpoint']);
 
-				//write to the cache file
-				$cache->setCache($name,$data[$name],$a['timetolive']);
-				$cache->writeCache();
+					//write to the cache file
+					$cache->setCache($name,$data[$name],$a['timetolive']);
+					$cache->writeCache();
 
-				$encoded = json_encode($data[$name]);
-				//save a raw version of the file also
-				$cache->writeRaw($a['cache_file'], $encoded);
+					$encoded = json_encode($data[$name]);
+					//save a raw version of the file also
+					$cache->writeRaw($a['cache_file'], $encoded);
 
-				//update the timestamp
-				$this->_updateTimestamp(md5($encoded), $name);
+					//update the timestamp
+					$this->touchApiCache(md5($encoded), $name);
+				}
 			}
 		}
 
@@ -146,7 +149,7 @@ Class ApiModel extends Model
 	 * @param  string $name [description]
 	 * @return void
 	 */
-	private function _updateTimestamp($hash, $name)
+	public function touchApiCache($hash, $name)
 	{
 		$this->_db->update('api_cache', 
 				array(
