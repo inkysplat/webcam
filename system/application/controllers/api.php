@@ -11,9 +11,9 @@ Class ApiController extends Controller
 	{
 		$request = Util('Request');
 
-		if($request->post('payload') || $request->params['payload'])
+		if($request->post('payload') || isset($request->params['payload']))
 		{
-			if(isset($request->post('payload')) && $request->post('payload') != '')
+			if($request->post('payload') && $request->post('payload') != '')
 			{
 				$payload = $request->post('payload');
 			}
