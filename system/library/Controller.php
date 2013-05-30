@@ -17,15 +17,41 @@ Abstract Class Controller
 	public $defaultViewType = 'html';
 
 	/**
+	 * This Controller's Corresponding Model
+	 * @access protected
+	 * @var string
+	 */
+	protected $_model = '';
+
+	/**
 	 * Constructor to map dependancies into the local scope
 	 * @param [array] $deps [description]
 	 */
-	public function __construct($deps){
+	public function __construct($deps)
+	{
 		foreach($deps as $name=>$dep)
 		{
 			$obj = strtolower('_'.$name);
 			$this->{$obj} = $dep;
 		}
+
+		if(isset($deps['db']) && isset($this->_db))
+		{
+			try
+			{
+				$class = get_class($this);
+				$class = str_replace('Controller','',$class);
+				$class = ucfirst(strtolower($class));
+
+				$modelClass = $class.'Model';
+
+				$this->_model = new $modelClass(array('db'=>$this->_db));
+			}catch(Exception $e)
+			{
+				//@TODO not sure... its not an issue if we dont have an model.
+			}
+		}
+
 	}
 
 	/**

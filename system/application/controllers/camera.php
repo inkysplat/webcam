@@ -2,9 +2,12 @@
 
 Class CameraController extends Controller
 {
+	public $defaultViewType = 'json';
+
 	public function __construct($deps)
 	{
 		parent::__construct($deps);
+		$this->_setParams();
 	}
 
 	public function indexAction(){
@@ -13,16 +16,11 @@ Class CameraController extends Controller
 
 	public function latestAction()
 	{
-		//this query is the definative way to get the latest
-		$sql = "SELECT * FROM webcam_images WHERE datetime = (".
-					"SELECT MAX(datetime) AS datetime FROM webcam_images".
-				") AND uploaded=1 AND archived=1 ORDER BY datetime";
+		$rs = $this->_model->getLatestImage();
 
-		$rs = $this->_db->fetchAll($sql);
+		$rs['url'] = $this->_setUrlPath($rs);
 
-		$rs[0]['url'] = $this->_setUrlPath($rs[0]);
-
-		$this->defaultViewType = 'json';
+		$this->defaultViewType = $this->format;
 		$this->viewParams['latest'] = $rs;
 	}
 
@@ -62,8 +60,7 @@ Class CameraController extends Controller
 					$archived = true;
 				}
 
-				$site_url = 'http://'.$_SERVER['HTTP_HOST'].'/';				
-				$url = str_replace(PUBLIC_PATH,$site_url,$archive);
+				$url = str_replace(PUBLIC_PATH,SITE_URL,$archive);
 			}
 
 			$insert = array(
@@ -77,79 +74,67 @@ Class CameraController extends Controller
 				'archived'	=> $archived?'1':'0'
 				);
 
-			$this->_db->insert('webcam_images',$insert);
+			$this->_model->addSnapshot($insert);
 
 			$this->viewParams['success'] = $success;
 		}
 	}
 
-	public function listAction()
+	private function _setParams()
 	{
-		$this->defaultViewType = 'javascript';
-
 		$request = Util('Request');
 
 		$date = date('Y-m-d');
-
 		if(isset($request->params['date']) && $request->params['date'])
 		{
 			$dt = new DateTime($request->params['date']);
 			$date = $dt->format('Y-m-d');
 		}
 
-		$sql = "SELECT * FROM webcam_images ".
-				"WHERE DATE(datetime) = ? AND uploaded=1 AND archived=1 ".
-				"ORDER BY datetime DESC ";
-		$bind = array($date);
+		$this->date = $date;
 
-		if(isset($request->params['limit']) && $request->params['limit'] > 0)
+		$limit = 0;
+		if(isset($request->params['limit']) && is_numeric($request->params['limit']))
 		{
-			$sql .= " LIMIT ".(int)$request->params['limit'];
+			$limit = $request->params['limit'];
 		}
 
-		$images = $this->_db->fetchAll($sql,$bind);
+		$this->limit = $limit;
+
+		$format = $this->defaultViewType;
+		if(isset($request->params['format']) && $request->params['format'])
+		{
+			$format = $request->params['format'];
+		}
+
+		$this->format = $format;
+	}
+
+	public function listAction()
+	{
+		$request = Util('Request');
+
+		$images = $this->_model->getListOfImages($this->date, $this->limit);
 
 		if(!empty($images))
 		{
-			$format = 'javascript';
-			if(isset($request->params['format']) && $request->params['format'])
-			{
-				$format = $request->params['format'];
-			}
-
 			foreach($images as &$img)
 			{
 				$img['url'] = $this->_setUrlPath($img);
 			}
 
-			switch($format)
+			$this->defaultViewType = $this->format;
+			$this->viewParams['format'] = $this->format;
+			$this->viewParams['images'] = $images;
+			$this->viewParams['full'] = false;
+			if(isset($request->params['full']) && $request->params['full'])
 			{
-				case 'jsonp':
-					$this->defaultViewType = 'jsonp';
-					$this->viewParams['format'] = 'json';
-					$this->viewParams['images'] = $images;
-					$this->viewParams['full'] = false;
-					if(isset($request->params['full']) && $request->params['full'])
-					{
-						$this->viewParams['full'] = true;
-					}
+				$this->viewParams['full'] = true;
+			}
 
-				case 'json':
-					$this->defaultViewType = 'json';					
-					$this->viewParams['format'] = 'json';
-					$this->viewParams['images'] = $images;
-					$this->viewParams['full'] = false;
-					if(isset($request->params['full']) && $request->params['full'])
-					{
-						$this->viewParams['full'] = true;
-					}
-				break;
-				case 'javascript':					
-
-					$this->defaultViewType = 'javascript';
-					$this->viewParams['format'] = 'javascript';
-					$this->viewParams['images'] =  $images;
-				break;
+			if($format == 'xml')
+			{
+				$this->viewParams['xml'] = View::renderXML($images);
 			}
 		}
 
@@ -159,16 +144,15 @@ Class CameraController extends Controller
 	{
 		if($url['url'] == null || $url['url'] == '')
 		{
-			$site_url = 'http://'.$_SERVER['HTTP_HOST'].'/';
 
 			if(defined('PUBLIC_PATH'))
 			{
-				$url['url'] = str_replace(PUBLIC_PATH, $site_url,$url['path']);
+				$url['url'] = str_replace(PUBLIC_PATH, '',$url['path']);
 			}
 
 			if(strpos('/home/webcam/public_html',$url['url']) !== false)
 			{
-				$url['url'] = str_replace('/home/webcam/public_html',$site_url, $url['url']);
+				$url['url'] = str_replace('/home/webcam/public_html','', $url['url']);
 			}
 		}
 
@@ -178,72 +162,13 @@ Class CameraController extends Controller
 	public function rawlistAction()
 	{
 
-		$this->defaultViewType = 'javascript';
+		$images = $this->_model->getListOfRawImages($this->date);
 
-		$date = date('Y-m-d');
-
-		$request = Util('Request');
-
-		if(isset($request->params['date']) && $request->params['date'])
+		if(!empty($images))
 		{
-			$dt = new DateTime($request->params['date']);
-			$date = $dt->format('Y-m-d');
-		}
-
-		$date_path = implode(DIR_SEP,explode('-',$date));
-		$image_path = PUBLIC_PATH.DIR_SEP.'webcam'.DIR_SEP.$date_path;
-
-		if(!is_dir($image_path))
-		{
-			return false;
-		}
-
-		$files = scandir($image_path);
-		if($files && is_array($files))
-		{
-			$images = array();
-			foreach($files as $file)
-			{
-				if($file == '.' || $file == '..')
-					continue;
-
-				if(count($images) > 500)
-					continue;
-
-				if(substr($file,-4,4) == '.jpg')
-					$images[] = $file;
-			}
-
-			if(!empty($images))
-			{
-				$format = 'javascript';
-				if(isset($request->params['format']) && $request->params['format'])
-				{
-					$format = $request->params['format'];
-				}
-
-				switch($format)
-				{
-					case 'json':
-						$paths = array();
-						foreach($images as $image)
-						{
-							$paths[] = DIR_SEP.'webcam'.DIR_SEP.$date_path.DIR_SEP.$image;
-						}
-
-						$this->defaultViewType = 'json';
-						$this->viewParams['format'] = 'json';
-						$this->viewParams['images'] = $paths;
-					break;
-					case 'javascript':
-					default:
-						$this->defaultViewType = 'javascript';
-						$this->viewParams['format'] = 'javascript';
-						$this->viewParams['images'] =  $images;
-						$this->viewParams['date_path'] = $date_path;
-					break;
-				}
-			}
+			$this->defaultViewType = $this->format;
+			$this->viewParams['format'] = $this->format;
+			$this->viewParams['images'] = $images;
 		}
 	}
 }

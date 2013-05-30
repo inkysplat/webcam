@@ -33,7 +33,7 @@ Class View
 				break;
 			case 'jsonp':
 				header('Content-type: text/html;');
-				break;				
+				break;
 			case 'json':
 				header('Content-type: application/json;');
 				break;
@@ -60,15 +60,6 @@ Class View
 
 	public static function renderXML($data_array = array())
 	{
-		// creating object of SimpleXMLElement
-		$xml = new SimpleXMLElement("<?xml version=\"1.0\"?><root></root>");
-
-		// function call to convert array to xml
-		array_to_xml($data_array,$xml);
-
-		//saving generated xml file
-		$xml->asXML('file path and name');
-
 
 		// function defination to convert array to xml
 		function array_to_xml($data_array, &$xml) {
@@ -88,7 +79,16 @@ Class View
 		    }
 		}
 
-		return $xml->asXML();
+		// creating object of SimpleXMLElement
+		$xml = new SimpleXMLElement("<?xml version=\"1.0\"?><root></root>");
+
+		// function call to convert array to xml
+		array_to_xml($data_array,$xml);
+
+		//saving generated xml file
+		$xml->asXML('file path and name');
+
+		return trim($xml->asXML());
 	}
 
 	public function partial($path, $params = array())

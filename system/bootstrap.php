@@ -21,6 +21,8 @@ define('LAYOUTS_PATH', realpath(VIEW_PATH . 'layouts') . DIR_SEP);
 define('PARTIALS_PATH', realpath(VIEW_PATH . 'partials') . DIR_SEP);
 define('PAGES_PATH', realpath(VIEW_PATH . 'pages') . DIR_SEP);
 
+define('SITE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
+
 //the version of doctrine library to use
 define('DOCTRINE_VER', '2.3.2');
 
@@ -70,22 +72,32 @@ spl_autoload_register('__autoload');
  */
 function __autoload($class)
 {
+    $o = $class;
+    //if this class exists we don't need to do anything.
     if (class_exists($class))
     {
         return true;
     }
 
+    //don't load these...
     $dontload = array('Bootstrap');
     if(in_array($class, $dontload))
     {
         return true;
     }
 
-    //capitalize the class name
+    //capitalize the class name for Library files
     $class = ucfirst($class);
     $class = str_replace(array('\\', '/'), DIR_SEP, $class);
-    $file = DIR_SEP . $class . '.php';
 
+    //this is a model we're trying to load!
+    if($class !== 'Model' && substr($class,-5) == 'Model')
+    {
+        $class = strtolower(substr($class,0,-5));
+    }
+
+    //create file name
+    $file =  $class . '.php';
     foreach ($GLOBALS['AUTOLOAD_PATHS'] as $path)
     {
         $path = $path . $file;
@@ -97,8 +109,8 @@ function __autoload($class)
         }
     }
 
-    //throw exception on missing class
-    throw new Exception(__FUNCTION__ . '::Cannot find class \'' . $class . '\'');
+    //throw exception on missing
+    throw new Exception(__FUNCTION__ . '::Cannot find class \'' . $o . '\'');
 }
 
 //include some global functions

@@ -6,7 +6,7 @@ if(isset($format)):
 			echo "\nvar images = new Array();";
 			foreach($images as $image)
 			{
-				echo "\nimages[".$i++."] = ".$image['url'];
+				echo "\nimages[".$i++."] = ".SITE_URL.$image['url'];
 			}
 		break;
 		case 'json':
@@ -16,11 +16,14 @@ if(isset($format)):
 				$i = array();
 				foreach($images as $image)
 				{
-					$i[] = $image['url'];
+					$i[] = SITE_URL.$image['url'];
 				}
 				echo json_encode($i);
 			}
 
+			break;
+			case 'xml':
+				echo trim($xml);
 			break;
 	endswitch;
 endif;
