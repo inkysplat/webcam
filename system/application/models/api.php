@@ -49,11 +49,12 @@ Class ApiModel extends Model
 				$cache->setCache($name,$data[$name],$a['timetolive']);
 				$cache->writeCache();
 
+				$encoded = json_encode($data[$name]);
 				//save a raw version of the file also
-				$cache->writeRaw($a['cache_file'], json_encode($data[$name]));
+				$cache->writeRaw($a['cache_file'], $encoded);
 
 				//update the timestamp
-				$this->_updateTimestamp(md5($file), $name);
+				$this->_updateTimestamp(md5($encoded), $name);
 			}
 		}
 
