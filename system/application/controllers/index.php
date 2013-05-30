@@ -18,8 +18,6 @@ Class IndexController extends Controller{
 
 	public function apiAction($service = ''){
 
-		$data = $this->_loadAPI();
-
 		if($service != '')
 		{
 			if(substr($service,-5) == '.json')
@@ -27,9 +25,9 @@ Class IndexController extends Controller{
 				$service = substr($service,0,-5);
 			}
 
-			$this->viewParams['data'] = $data[$service];
+			$this->viewParams['data'] = $this->_api->getApiData($service);
 		}else{
-			$this->viewParams['data'] = $data;
+			$this->viewParams['data'] = $this->_api->getAllApiData();
 		}
 
 		$this->defaultViewType = 'json';

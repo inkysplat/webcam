@@ -78,6 +78,16 @@ Class ApiModel extends Model
 	}
 
 	/**
+	 * Returns all the API Data sofar
+	 * @return array
+	 */
+	public function getAllApiData()
+	{
+		return $this->data;
+	}
+
+
+	/**
 	 * Format the latest LastFM track
 	 * 
 	 * @return string [description]
