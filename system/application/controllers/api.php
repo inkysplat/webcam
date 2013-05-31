@@ -18,7 +18,7 @@ Class ApiController extends Controller
 
 		if($request->post('payload'))
 		{
-			$payload = $request->post('payload');
+			$payload = stripslashes($request->post('payload'));
 
 			$config->ini('api');
 			$gh = $config->get('github');
@@ -28,12 +28,11 @@ Class ApiController extends Controller
 
 			$this->_model->touchApiCache(md5($payload),'github');
 
+			$decoded = json_decode($payload,true);
+
 			$cache->setCacheFilename($gh['cache_file']);
-			$cache->setCache('github', json_decode($payload,true));
+			$cache->setCache('github', $decoded);
 			$cache->writeCache();
-
-			file_put_contents('/tmp/github.log',print_r(json_decode($payload,true),true));
-
 		}
 	}
 }
