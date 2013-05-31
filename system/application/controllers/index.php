@@ -14,23 +14,13 @@ Class IndexController extends Controller{
 		$this->viewParams['lastfm'] = $this->_api->getLastfmTrack();
 		$this->viewParams['twitter'] = $this->_api->getTwitterTweet();
 
-	}
-
-	public function apiAction($service = ''){
-
-		if($service != '')
+		if($this->_api->getGithubCommitMessage() != '')
 		{
-			if(substr($service,-5) == '.json')
-			{
-				$service = substr($service,0,-5);
-			}
-
-			$this->viewParams['data'] = $this->_api->getApiData($service);
-		}else{
-			$this->viewParams['data'] = $this->_api->getAllApiData();
+			$this->viewParams['github']  = '['.$this->_api->getGithubCommitRepo().'] - ';
+			$this->viewParams['github'] .= $this->_api->getGithubCommitMessage().' (';
+			$this->viewParams['github'] .= $this->_api->getGithubCommitter('username').')';
 		}
 
-		$this->defaultViewType = 'json';
 	}
 
 }

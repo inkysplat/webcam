@@ -5,8 +5,23 @@ Class ApiController extends Controller
 	public function __construct($deps)
 	{
 		parent::__construct($deps);
+	}
 
-		//$this->_api = new ApiModel(array('db'=>$deps['db']));
+	public function fetchAction($service = ''){
+
+		if($service != '')
+		{
+			if(substr($service,-5) == '.json')
+			{
+				$service = substr($service,0,-5);
+			}
+
+			$this->viewParams['data'] = $this->_model->getApiData($service);
+		}else{
+			$this->viewParams['data'] = $this->_model->getAllApiData();
+		}
+
+		$this->defaultViewType = 'json';
 	}
 
 	public function githubServiceHookAction()

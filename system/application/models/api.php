@@ -142,6 +142,46 @@ Class ApiModel extends Model
 		return '';
 	}
 
+	public function getGithubCommitter($field = '')
+	{
+		if(isset($this->data['github']))
+		{
+			if(isset($this->data['github']['commits'][0]['author']))
+			{
+				$author = $this->data['github']['commits'][0]['author'];
+
+				if(isset($author[$field]))
+				{
+					return $author[$field];
+				}
+
+				return $author;
+			}
+		}
+	}
+
+	public function getGithubCommitMessage()
+	{
+		if(isset($this->data['github']))
+		{
+			if(isset($this->data['github']['commits'][0]['message']))
+			{
+				return $this->data['github']['commits'][0]['message'];
+			}
+		}
+	}
+
+	public function getGithubCommitRepo()
+	{
+		if(isset($this->data['github']))
+		{
+			if(isset($this->data['github']['repository']['name']))
+			{
+				return $this->data['github']['repository']['name'];
+			}
+		}
+	}
+
 	/**
 	 * Save a new time stamp and hash of the cache file to database
 	 * 
