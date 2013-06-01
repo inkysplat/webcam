@@ -104,12 +104,14 @@ class Request
      */
     private function _setAgentLanguage()
     {
-        $languages = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        foreach($languages as &$language)
-        {
-            $language = substr($language,0,2);
-        }
-        $this->request['language'] = array_unique($languages);
+        if($_SERVER['HTTP_ACCEPT_LANGUAGE']){
+            $languages = explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            foreach($languages as &$language)
+            {
+                $language = substr($language,0,2);
+            }
+            $this->request['language'] = array_unique($languages);
+        } // defends from no brower user agent i.e external script consuming an API end point  
     }
     
     /**
