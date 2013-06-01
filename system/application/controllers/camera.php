@@ -132,7 +132,7 @@ Class CameraController extends Controller
 				$this->viewParams['full'] = true;
 			}
 
-			if($format == 'xml')
+			if($this->format == 'xml')
 			{
 				$this->viewParams['xml'] = View::renderXML($images);
 			}
