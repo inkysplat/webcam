@@ -7,7 +7,7 @@ try{
 	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0"); 
 	curl_setopt($ch, CURLOPT_HEADER, 'accept-language: en-us');
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-	$result = curl_exec($ch); 
+	$file = curl_exec($ch); 
 	curl_close($ch);
 
 }catch(Exception $e)
