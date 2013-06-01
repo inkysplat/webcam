@@ -57,7 +57,7 @@ class Request
             self::$_instance->_setSubDomain();
             self::$_instance->_setRequestURI();
             self::$_instance->_setRequestParams();
-            self::$_instance->_setAgentLanguage();
+            //self::$_instance->_setAgentLanguage();
             self::$_instance->_setFullURL();
             self::$_instance->_setSelfURL();
         }

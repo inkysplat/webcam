@@ -1,6 +1,6 @@
 <?php
 
-INI_set('display_errors','off'); 
+ini_Set('display_errors','Off'); 
 
 date_default_timezone_set('Europe/London');
 
@@ -8,7 +8,6 @@ date_default_timezone_set('Europe/London');
 define('APP_PATH', realpath(BASE_PATH . 'application') . DIR_SEP);
 define('INCLUDE_PATH', realpath(BASE_PATH . 'includes') . DIR_SEP);
 define('LIBRARY_PATH', realpath(BASE_PATH . 'library') . DIR_SEP);
-define('PUBLIC_PATH', realpath(BASE_PATH . 'public') . DIR_SEP);
 define('CACHE_PATH', realpath(BASE_PATH . 'cache') . DIR_SEP);
 define('VENDOR_PATH', realpath(BASE_PATH . 'vendor') . DIR_SEP);
 
@@ -24,6 +23,11 @@ define('PARTIALS_PATH', realpath(VIEW_PATH . 'partials') . DIR_SEP);
 define('PAGES_PATH', realpath(VIEW_PATH . 'pages') . DIR_SEP);
 
 define('SITE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
+
+if(!defined('PUBLIC_PATH'))
+{
+    define('PUBLIC_PATH', realpath(BASE_PATH . 'public') . DIR_SEP);
+}
 
 //the version of doctrine library to use
 define('DOCTRINE_VER', '2.3.2');
@@ -48,7 +52,7 @@ if (defined('DOCTRINE_VER') && DOCTRINE_VER != '')
 }
 
 $env = 'prod';
-if(stripos($_SERVER['HTTP_HOST'],'dev') === FALSE)
+if(stripos($_SERVER['HTTP_HOST'],'dev') !== FALSE)
 {
     $env = 'dev';
     ini_set('display_errors','On');

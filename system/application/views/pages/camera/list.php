@@ -9,6 +9,7 @@ if(isset($format)):
 				echo "\nimages[".$i++."] = ".SITE_URL.$image['url'];
 			}
 		break;
+		case 'jsonp':
 		case 'json':
 			if($full){
 				echo json_encode($images);

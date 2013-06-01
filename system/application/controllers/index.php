@@ -16,8 +16,7 @@ Class IndexController extends Controller{
 
 		if($this->_api->getGithubCommitMessage() != '')
 		{
-			$this->viewParams['github']  = '['.$this->_api->getGithubCommitRepo().'] - ';
-			$this->viewParams['github'] .= $this->_api->getGithubCommitMessage().' (';
+			$this->viewParams['github']  = $this->_api->getGithubCommitMessage().' (';
 			$this->viewParams['github'] .= $this->_api->getGithubCommitter('username').')';
 		}
 
