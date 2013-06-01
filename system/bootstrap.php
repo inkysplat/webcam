@@ -1,5 +1,7 @@
 <?php
 
+INI_set('display_errors','off'); 
+
 date_default_timezone_set('Europe/London');
 
 //base directory paths
