@@ -1,26 +1,50 @@
 
-var index = 0;
-var preload = new Array();
-var num_of_images = images.length;
-var orginal_date = $('#image-date').html();
-var stop_play = false;
 
-for(var i=0; i<num_of_images;i++)
-{
-	preload[i] = new Image();
-	preload[i].src = images[i];
-}	
+// var resize = function(){
+// 	$window = $(window);
+// 	$('#cctv li').css({
+// 		height: $window.height(),
+// 		width: $window.width()
+// 	});
+// }
 
-function nextImage(index)
-{
-	if(index <= num_of_images)
-	{
-		if(images[index] && !stop_play)
-		{
-			$('#image-date').html(index+" of "+num_of_images);
-			$('article').css({'background-image': 'url('+images[index]+')'});
-			index++;
-			setTimeout(function(){nextImage(index)},190);
+// resize();
+
+// $(window).resize(resize);
+
+
+var env = {
+	twitter: 'http://webcam.gandvclients.co.uk/system/tmp/cache/twitter.json?callback=?',
+	lastfm: 'http://webcam.gandvclients.co.uk/system/tmp/cache/lastfm.json?callback=?'
+}
+
+///////////////
+
+var ps = (function(){
+	var stack = [];
+	return {
+		subscribe: function(data){
+			stack.push(data);
+		},
+		publish: function(data){
+			for(var i = 0; i < stack.length; i++){
+				var obj = stack[i];	
+				if(data.ev == obj.ev){
+					obj.inst[obj.callback](data);
+				}
+			}
+		},
+		unsubscribe: function(data){
+			var tmp;
+			for(var i = 0; i < stack.length; i++){
+				if(!data == stack[i].inst){
+					tmp.push(stack[i]);
+				} else {
+					console.log('unsubscribe');
+					console.log(stack[i]);
+				}
+			}
+			stack = tmp;
 		}
 
 		if(!stop_play)
@@ -29,16 +53,216 @@ function nextImage(index)
 			return true;
 		}
 	}
+})();
+
+///////////////
+
+var preloader = function(data){
+	var stack = 0;
+	var imgs = [];
+	$.each(data.playQueue, function(){
+		stack++;
+		var img = new Image();
+		img.src = this.src;
+		img.addEventListener('load', function(){ 
+			if(!--stack > 0){
+				data.callback(imgs);			
+			}
+		}, false);
+		imgs.push(img);
+	});
 }
 
-$('#rewind').click(function(e){
-	nextImage(index);
-});
 
-$('#stop').click(function(e){
-	stop_play = true;
-});
 
+
+var playQueue = function(){}
+playQueue.prototype.queue = [];
+playQueue.prototype.rx = function(){
+	console.log('get playQueue');	
+	$.getJSON('/playQueue.php', function(data){
+		new preloader({
+			images: data.reverse()
+		})
+	});
+}
+
+new playQueue;
+
+
+
+// var cctv = function(pq){
+// 	this.pq = pq;
+// 	this.show();	
+// }
+// cctv.prototype.show = function(){
+// 	// this.unsubscribe();
+// 	var that = this;
+// 	$.getJSON('/playQueue.php', function(data){
+// 		new preloader({
+// 			playQueue: data.reverse(),	
+// 			callback: function(imgs){
+// 				var display = function(){
+// 					var img = imgs.pop();
+// 					$('<li />').appendTo('#cctv ul').css({
+// 						backgroundImage: 'url(' + img.src + ')'
+// 					}).fadeIn('slow');
+// 					new ticker({
+// 						slctr: '.time .text',
+// 						str: img.src.substring(58, (img.src.length-4))
+// 					});				
+// 					setTimeout(function(){
+// 						if(imgs.length > 0){
+// 							display();
+// 						} else {
+// 							setTimeout(function(){
+// 								that.show();
+// 								console.log('again');
+// 							}, 2800);
+// 						}
+// 					}, 2800)
+// 				}
+// 				display();
+// 			}
+// 		});
+// 	});
+// }
+
+// new cctv(new playQueue);
+
+// ///////////////
+
+// var ticker = function(data){
+	
+// 	var $el = $(data.slctr);
+
+// 	var states = [{
+// 		state: 'rwd',
+// 		chars: $el.html().split('')
+// 	},{
+// 		state: 'ff',
+// 		chars: data.str.split('').reverse()
+// 	}];
+
+// 	var type = function(o){
+// 		setTimeout(function(){
+// 			var html = $el.html();
+// 			switch(o.state){
+// 				case 'ff':
+// 					html += o.chars.pop();
+// 				break;
+// 				case 'rwd':
+// 					o.chars.pop();
+// 					html =  o.chars.join('');
+// 				break;
+// 			} 
+// 			$el.html(html);
+// 			if(o.chars.length > 0){
+// 				type(o);
+// 			} else {
+// 				if(states[++i]){
+// 					type(states[i]);
+// 				} else {
+// 					if(data.callback){
+// 						data.callback();
+// 					}
+// 				}
+// 			}
+// 		}, 30);
+// 	}
+
+// 	var i;
+// 	type(states[i = 0]);
+
+// }
+
+
+
+// //////////////////
+
+// var tweet = function(){
+// 	// ps.subscribe({ 
+// 	// 	inst: this, 
+// 	// 	ev: 'timeOut', 
+// 	// 	callback: 'TX'
+// 	// });
+// }
+// tweet.prototype.TX = function(){
+// 	console.log('tx called');
+// 	$.getJSON(env.twitter).done(function(data){
+// 		console.log(data);
+// 	});
+// };
+
+// new tweet;
+
+// ///////////////
+
+
+// var timer = (function(){
+
+// 	var go = true;
+
+// 	function timeOut(){
+// 		ps.publish({
+// 				ev: 'timeOut',
+// 				time: Date.now()
+// 		});
+// 	}
+
+// 	timeOut();
+
+// 	setInterval(function(){
+// 		if(go) timeOut();
+// 	}, 60000);
+
+// 	return {
+// 		pause: function(){
+// 			go = false;
+// 		},
+// 		play: function(){
+// 			go = true;
+// 		}
+// 	}  
+
+// })();
+
+
+// var index = 0;
+// var preload = new Array();
+// var num_of_images = images.length;
+// var orginal_date = $('#image-date').html();
+// var stop_play = false;
+
+// for(var i=0; i<num_of_images;i++)
+// {
+// 	preload[i] = new Image();
+// 	preload[i].src = images[i];
+// }	
+
+// function nextImage(index)
+// {
+// 	if(index <= num_of_images)
+// 	{
+// 		if(images[index] && !stop_play)
+// 		{
+// 			$('#image-date').html(index+" of "+num_of_images);
+// 			$('article').css({'background-image': 'url('+images[index]+')'});
+// 			index++;
+// 			setTimeout(function(){nextImage(index)},190);
+// 		}
+// 	}
+// }
+
+// $('#rewind').click(function(e){
+// 	nextImage(index);
+// });
+
+// $('#stop').click(function(e){
+// 	stop_play = true;
+// });
+
+<<<<<<< Updated upstream:public_html/js/script.js
 $('#play').click(function(e){
 	if(preload.length == num_of_images)
 	{
@@ -46,3 +270,9 @@ $('#play').click(function(e){
 		$('article').css({'background-image':'url(/webcam.jpg)'});
 	}
 });
+=======
+// $('#play').click(function(e){
+// 	$('#image-date').html(orginal_date);
+// 	$('article').css({'background-image':'url(/webcam.jpg)'});
+// });
+>>>>>>> Stashed changes:assets/js/script.js
