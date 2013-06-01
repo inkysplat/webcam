@@ -19,6 +19,8 @@ Class CameraController extends Controller
 		$rs = $this->_model->getLatestImage();
 
 		$rs['url'] = $this->_setUrlPath($rs);
+		$rs['url'] = str_replace(SITE_URL,'',$rs['url']);
+		$rs['url'] = SITE_URL.$rs['url'];
 
 		$this->defaultViewType = $this->format;
 		$this->viewParams['latest'] = $rs;
@@ -121,6 +123,8 @@ Class CameraController extends Controller
 			foreach($images as &$img)
 			{
 				$img['url'] = $this->_setUrlPath($img);
+				//stop duplicate remove all URLs
+				$img['url'] = str_replace(SITE_URL,'',$img['url']);
 			}
 
 			$this->defaultViewType = $this->format;

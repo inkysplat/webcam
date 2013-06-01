@@ -1,6 +1,6 @@
 <?php
 
-INI_set('display_errors','off'); 
+ini_Set('display_errors','Off'); 
 
 date_default_timezone_set('Europe/London');
 
@@ -48,7 +48,7 @@ if (defined('DOCTRINE_VER') && DOCTRINE_VER != '')
 }
 
 $env = 'prod';
-if(stripos($_SERVER['HTTP_HOST'],'dev') === FALSE)
+if(stripos($_SERVER['HTTP_HOST'],'dev') !== FALSE)
 {
     $env = 'dev';
     ini_set('display_errors','On');

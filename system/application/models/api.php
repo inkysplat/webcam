@@ -39,8 +39,10 @@ Class ApiModel extends Model
 			//set cache file
 			$cache->setCacheFilename($a['cache_file']);
 
+			$data[$name] = $cache->getCache($name);
+
 			//empty data
-			if(!($data[$name] = $cache->getCache($name)))
+			if(!$data[$name])
 			{
 				if(isset($a['endpoint']) && !empty($a['endpoint']))
 				{
