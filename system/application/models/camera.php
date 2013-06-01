@@ -30,6 +30,31 @@ Class CameraModel extends Model
 		return $rs;
 	}
 
+	public function getLatestImages($limit = 0)
+	{
+		$sql = "SELECT * FROM snapshots ORDER BY datetime DESC ";
+		if($limit > 0 )
+		{
+			$sql .= "LIMIT ".$limit;
+		}
+
+		$rs = $this->_db->fetchAll($sql);
+
+		return $rs;
+	}
+
+	public function getImagesByInterval($interval)
+	{
+		$dt = new DateTime();
+		$dt->modify($interval);
+		$interval = $dt->format('Y-m-d H:i:s');
+
+		$sql = "SELECT * FROM snapshots WHERE datetime > ? ORDER BY datetime DESC";
+		$rs = $this->_db->fetchAll($sql,array($interval));
+
+		return $rs;
+	}
+
 	/**
 	 * Get a list of images from the database
 	 * 

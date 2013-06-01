@@ -16,11 +16,41 @@ Class CameraController extends Controller
 
 	public function latestAction()
 	{
-		$rs = $this->_model->getLatestImage();
+		if($this->limit > 0)
+		{
+			$rs = $this->_model->getLatestImages($this->limit);
 
-		$rs['url'] = $this->_setUrlPath($rs);
-		$rs['url'] = str_replace(SITE_URL,'',$rs['url']);
-		$rs['url'] = SITE_URL.$rs['url'];
+			foreach($rs as &$r)
+			{
+				$r['url'] = $this->_setUrlPath($r);
+				$r['url'] = str_replace(SITE_URL,'',$r['url']);
+				$r['url'] = SITE_URL.$r['url'];
+			}
+		}else
+		{
+			$rs = $this->_model->getLatestImage();
+
+			$rs['url'] = $this->_setUrlPath($rs);
+			$rs['url'] = str_replace(SITE_URL,'',$rs['url']);
+			$rs['url'] = SITE_URL.$rs['url'];
+		}
+
+		$this->defaultViewType = $this->format;
+		$this->viewParams['latest'] = $rs;
+	}
+
+	public function intervalAction()
+	{
+		$interval = '-24 hour';
+
+		$request= Util('Request');
+
+		if($request->params['interval'] && $request->params['length'])
+		{
+			$interval = '-'.$request->params['length'].' '.$request->params['interval'];
+		}
+
+		$rs = $this->_model->getImagesByInterval($interval);
 
 		$this->defaultViewType = $this->format;
 		$this->viewParams['latest'] = $rs;
