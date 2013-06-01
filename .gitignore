@@ -8,3 +8,5 @@ system/tmp/*
 
 public_html/webcam/*
 public_html/webcam.jpg
+
+.DS_Store
