@@ -14,8 +14,8 @@
 
 
 var env = {
-	twitter: 'http://webcam.gandvclients.co.uk/system/tmp/cache/twitter.json?callback=?',
-	lastfm: 'http://webcam.gandvclients.co.uk/system/tmp/cache/lastfm.json?callback=?'
+	twitter: 'http://webcam.gandvclients.co.uk/api/fetch/service/twitter/?callback=?',
+	lastfm: 'http://webcam.gandvclients.co.uk/api/fetch/service/lastfm/?callback=?'
 }
 
 ///////////////
@@ -46,12 +46,6 @@ var ps = (function(){
 			}
 			stack = tmp;
 		}
-
-		if(!stop_play)
-		{
-			stop_play = true;
-			return true;
-		}
 	}
 })();
 
@@ -64,9 +58,9 @@ var preloader = function(data){
 		stack++;
 		var img = new Image();
 		img.src = this.src;
-		img.addEventListener('load', function(){ 
+		img.addEventListener('load', function(){
 			if(!--stack > 0){
-				data.callback(imgs);			
+				data.callback(imgs);
 			}
 		}, false);
 		imgs.push(img);
@@ -80,7 +74,7 @@ var playQueue = function(){}
 playQueue.prototype.queue = [];
 playQueue.prototype.rx = function(){
 	console.log('get playQueue');	
-	$.getJSON('/playQueue.php', function(data){
+	$.getJSON('/camera/interval/interval/days/length/24', function(data){
 		new preloader({
 			images: data.reverse()
 		})
@@ -262,17 +256,4 @@ new playQueue;
 // 	stop_play = true;
 // });
 
-<<<<<<< Updated upstream:public_html/js/script.js
-$('#play').click(function(e){
-	if(preload.length == num_of_images)
-	{
-		$('#image-date').html(orginal_date);
-		$('article').css({'background-image':'url(/webcam.jpg)'});
-	}
-});
-=======
-// $('#play').click(function(e){
-// 	$('#image-date').html(orginal_date);
-// 	$('article').css({'background-image':'url(/webcam.jpg)'});
-// });
->>>>>>> Stashed changes:assets/js/script.js
+
