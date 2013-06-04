@@ -1,5 +1,5 @@
 <?php
-
+ini_set('display_errors', 'Off');
 if(preg_match('/robot|spider|crawler|curl|^$/i', $_SERVER['HTTP_USER_AGENT']))
 {
 	die('BOT');
