@@ -1,6 +1,9 @@
         <article role="main" style="background-image: url(/stream.php)">
 			<header>
 				<h1>G+V</h1>
+				<aside class="controls">
+					Current Users <span id="current-users"></span>
+				</aside>
 			</header>
 			<footer>
 				<aside class="ticker">

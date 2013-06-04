@@ -12,6 +12,22 @@
 
 // $(window).resize(resize);
 
+$.ajax({
+  url: "/visitor/add",
+  context: document.body
+}).done(function(){getCurrentUsers()});
+
+function getCurrentUsers()
+{
+	$.ajax({
+	  url: "/visitor/current",
+	  context: document.body
+	}).done(function(data) {
+	  $('#current-users').html(data);
+	});
+	setTimeout(function(){getCurrentUsers()},'10000');
+}
+
 
 var env = {
 	twitter: 'http://webcam.gandvclients.co.uk/api/fetch/service/twitter/?callback=?',
