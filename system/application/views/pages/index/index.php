@@ -9,10 +9,10 @@
 				<aside class="ticker">
 					<ul>
 						<li><span title="mood" class="mood"><i class="fontelico-emo-wink"></i></span></li>
-						<li><span class="tweet"><?= $lastfm ?> <a href="http://www.last.fm/user/goramandvincent/"><i class="icon-lastfm-sign"></i></a></span></li>
-						<li><span class="tweet"><?= $twitter;?> <a href="http://www.twitter.com/goramandvincent"><i class="icon-twitter-sign"></i></a></span></li>
+						<li><span id="lastfm" class="tweet"><?= $lastfm ?> <a href="http://www.last.fm/user/goramandvincent/"><i class="icon-lastfm-sign"></i></a></span></li>
+						<li><span id="twitter" class="tweet"><?= $twitter;?> <a href="http://www.twitter.com/goramandvincent"><i class="icon-twitter-sign"></i></a></span></li>
 						<?php if(isset($github) && $github):?>
-						<li><span class="tweet"><?= $github;?> <a href="http://www.github.com/enable"><i class="icon-github-sign"></i></a></span></li>
+						<li><span id="github" class="tweet"><?= $github;?> <a href="http://www.github.com/enable"><i class="icon-github-sign"></i></a></span></li>
 						<?php endif;?>
 						<li><time><i id="image-date" class="icon-time"></i> <?= date('Y-m-d H:i:s', filemtime('webcam.jpg'));?></time></li>
 						<li>

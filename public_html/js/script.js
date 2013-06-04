@@ -15,13 +15,6 @@
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
-$('#camara-canvas').css({'background-image':"url('/stream.php')"});
-$('.ticker').fadeIn();
-
-$.ajax({
-  url: "/visitor/add",
-  context: document.body
-}).done(function(){getCurrentUsers()});
 
 function getCurrentUsers()
 {
@@ -33,6 +26,25 @@ function getCurrentUsers()
 	});
 	setTimeout(function(){getCurrentUsers()},'10000');
 }
+
+function getApiData()
+{
+	$.getJSON('/api/ajax', function(data) {
+		$('#lastfm').val(data.lastfm);
+		$('#twitter').val(data.twitter);
+	});
+	setTimeout(function(){getApiData()},'20000');
+}
+
+$('#camara-canvas').css({'background-image':"url('/stream.php')"});
+$('.ticker').fadeIn();
+
+$.ajax({
+  url: "/visitor/add",
+  context: document.body
+}).done(function(){getCurrentUsers()});
+
+getApiData();
 
 ///////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
