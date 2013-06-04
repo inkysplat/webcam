@@ -24,6 +24,20 @@ Class ApiController extends Controller
 		$this->defaultViewType = 'json';
 	}
 
+	public function ajaxAction()
+	{
+		$this->defaultViewType = 'json';
+
+		$this->viewParams['ajax']['lastfm'] = $this->_model->getLastfmTrack();
+		$this->viewParams['ajax']['twitter'] = $this->_model->getTwitterTweet();
+
+		if($this->_model->getGithubCommitMessage() != '')
+		{
+			$this->viewParams['ajax']['github']  = $this->_model->getGithubCommitMessage().' (';
+			$this->viewParams['ajax']['github'] .= $this->_model->getGithubCommitter('username').')';
+		}
+	}
+
 	public function githubServiceHookAction()
 	{
 		$this->defaultViewType = 'plain';
