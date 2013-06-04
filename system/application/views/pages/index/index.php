@@ -1,4 +1,4 @@
-        <article role="main" style="background-image: url(/stream.php)">
+        <article id="camara-canvas" role="main" style="background-image: url(/stream.php?static=true)">
 			<header>
 				<h1>G+V</h1>
 				<aside class="controls">

@@ -11,13 +11,9 @@
 
 	html, 
 	body, 
-	article,
-	#cctv ul,
-	#cctv ul li,
-	.loader{
-		position: absolute;
+	article{
 		height: 100%;
-		width: 100%;
+		font-family: arial;
 		color: #fff;
 		font-family: 'Open Sans', sans-serif;
 		a{
@@ -28,10 +24,6 @@
 		}
 	}
 
-	html{
-		background: red;
-	}
-
 	header,
 	footer{
 		position: absolute;
@@ -40,11 +32,14 @@
 	}
 
 	article{
+		background-color: #000;
+		background-repeat: no-repeat;
+		background-size: cover;
 		position: relative;
-		// -webkit-transition: background 0.5s linear;
-		// -moz-transition: background 0.5s linear;
-		// -o-transition: background 0.5s linear;
-		// transition: background 0.5s linear;
+		-webkit-transition: background 0.5s linear;
+		-moz-transition: background 0.5s linear;
+		-o-transition: background 0.5s linear;
+		transition: background 0.5s linear;
 	}
 
 	header {
@@ -103,11 +98,13 @@
 
 	.ticker{
 		-webkit-font-smoothing: antialiased;
-		width: 70%;
+		width: 50%;
 		line-height: 24px;
+		display: none;
 		ul{
 			li{
 				padding-bottom: $gutter;
+				background: rgba(50, 50, 50, 0.3);
 			}
 		}
 	}
@@ -137,24 +134,12 @@
 		}
 	}
 
-	.service-icon{
-		color: $outRGBA;
-		text-decoration: none;
-		&:hover{
-			color: $overRGBA;	
+	.tweet{
+		a{
+			color: $outRGBA;
+			text-decoration: none;
+			&:hover{
+				color: $overRGBA;	
+			}
 		}
 	}
-
-
-	#cctv{
-		li{
-			background-repeat: no-repeat;
-			background-size: cover;
-			background-position: center;
-			display: none;
-		}
-	}
-
-
-
-

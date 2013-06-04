@@ -19,10 +19,10 @@ Class VisitorController extends Controller
 		$this->_model->addVisitor($params);
 	}
 
-	public function currentAction()
+	public function currentAction($interval = 5)
 	{
 		$this->defaultViewType = 'plain';
-		$rs = $this->_model->latestVisitorCount(5);
+		$rs = $this->_model->latestVisitorCount($interval);
 		$this->viewParams['current'] = $rs[0]['count'];
 	}
 
