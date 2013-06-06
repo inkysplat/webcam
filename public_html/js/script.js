@@ -19,7 +19,7 @@
 function getCurrentUsers()
 {
 	$.ajax({
-	  url: "/visitor/current",
+	  url: "/visitor/current/interval/20",
 	  context: document.body
 	}).done(function(data) {
 	  $('#current-users').html(data);
@@ -30,10 +30,25 @@ function getCurrentUsers()
 function getApiData()
 {
 	$.getJSON('/api/ajax', function(data) {
-		$('#lastfm').val(data.lastfm);
-		$('#twitter').val(data.twitter);
+		$('#lastfm').html(data.lastfm);
+		$('#twitter').html(data.twitter);
 	});
 	setTimeout(function(){getApiData()},'20000');
+}
+
+function apiTicker(){
+	$('.ticker ul li:first').slideUp( function () { 
+		$(this).appendTo($('.ticker ul')).slideDown(); 
+	});
+}
+var messageTimestamp = 0;
+function getMessage(){
+	$.getJSON('/visitor/getMessage/timestamp/'+messageTimestamp,
+		function(data){
+			$('.message span').html(data.msg);
+			messageTimestamp = data.timestamp;
+		});
+	setTimeout(function(){getMessage()},'2000');
 }
 
 $('#camara-canvas').css({'background-image':"url('/stream.php')"});
@@ -45,6 +60,30 @@ $.ajax({
 }).done(function(){getCurrentUsers()});
 
 getApiData();
+getMessage();
+
+setInterval(function(){ 
+	apiTicker () 
+}, 5000);
+
+$('.message .icon-pencil').click(function(){
+	$('.message span').hide();
+	$('.message input').show();
+	$('.message input').keypress(function (e) {
+	  if (e.which == 13) {
+	    var val = $('.message input').val();
+	    $.ajax({
+	    	url: '/visitor/postMessage/message/'+encodeURI(val)
+	    }).done(function(data){
+	    	$('.message input').hide();
+	    	$('.message span').show();
+	    });
+	  }
+	});
+});
+
+
+
 
 ///////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////

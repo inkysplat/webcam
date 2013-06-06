@@ -94,15 +94,22 @@
 				}
 			}
 		}
+		.message{
+			background: rgba(50,50,50,0.3);
+			padding: 3px;
+		}
 	}
 
 	.ticker{
 		-webkit-font-smoothing: antialiased;
-		width: 50%;
+		width: 100%;
 		line-height: 24px;
 		display: none;
 		ul{
+			height: 24px;
+			overflow: hidden;
 			li{
+				height: 24px;
 				padding-bottom: $gutter;
 				background: rgba(50, 50, 50, 0.3);
 			}

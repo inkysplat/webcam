@@ -53,7 +53,7 @@ Class VisitorController extends Controller
 		 
 		  // return a json array
 		  $response = array();
-		  $response['msg']       = file_get_contents($this->messageFile);
+		  $response['msg']       = urldecode(file_get_contents($this->messageFile));
 		  $response['timestamp'] = $currentmodif;
 
 		  $this->viewParams['response'] = $response;
