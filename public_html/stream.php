@@ -5,6 +5,8 @@ if(preg_match('/robot|spider|crawler|curl|^$/i', $_SERVER['HTTP_USER_AGENT']))
 	die('BOT');
 }
 
+date_default_timezone_set('Europe/London');
+
 /* Usage: <img src="thisfile.php"> */
 $server = "82.152.190.66"; // camera server
 $port = 8443; // camera server port

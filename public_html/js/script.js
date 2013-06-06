@@ -51,7 +51,13 @@ function getMessage(){
 	setTimeout(function(){getMessage()},'2000');
 }
 
-$('#camara-canvas').css({'background-image':"url('/stream.php')"});
+if(localClient)
+{
+	var streamUrl = 'http://192.168.0.250:8443/?action=stream';
+}else{
+	var streamUrl = '/stream.php';
+}
+$('#camara-canvas').css({'background-image':"url("+streamUrl+")"});
 $('.ticker').fadeIn();
 
 $.ajax({

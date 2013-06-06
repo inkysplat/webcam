@@ -12,6 +12,9 @@
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css">
+        <script>
+            var localClient = <?= $_SERVER['REMOTE_ADDR'] == '82.152.190.66'?'true':'false'?>;
+        </script>
     </head>
     <body>
 
