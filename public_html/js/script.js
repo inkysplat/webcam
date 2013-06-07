@@ -47,6 +47,7 @@ function getMessage(){
 		function(data){
 			$('.message span').html(data.msg);
 			messageTimestamp = data.timestamp;
+			$('#get-lucky-audio').play();
 		});
 	setTimeout(function(){getMessage()},'2000');
 }
