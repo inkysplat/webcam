@@ -41,13 +41,6 @@ Class VisitorController extends Controller
 		$count = $request->params['count'];
 
 		$rs = $this->_model->latestVisitorCount($interval);
-
-		while($count == $rs[0]['count'])
-		{
-			usleep(10000);
-			$rs = $this->_model->latestVisitorCount($interval);
-		}
-
 		$this->viewParams['current'] = $rs[0]['count'];
 	}
 
