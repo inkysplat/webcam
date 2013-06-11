@@ -184,6 +184,18 @@ Class ApiModel extends Model
 		}
 	}
 
+	public function saveApiUpdate($service, $message)
+	{
+		$params = array(
+			'api_name'=>$service, 
+			'status'=>$message,
+			'hash'=>md5($message),
+			'datetime'=> date('Y-m-d H:i:s')
+			);
+
+		$this->_db->insert('api_updates',$params);
+	}
+
 	/**
 	 * Save a new time stamp and hash of the cache file to database
 	 * 

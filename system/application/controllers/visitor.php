@@ -21,12 +21,30 @@ Class VisitorController extends Controller
 			);
 
 		$this->_model->addVisitor($params);
+
+		$o = array();
+		exec('ssh adam@82.152.190.66 "aplay /tmp/get_lucky_clip.ogg"',$o,$rtn);
+
+		$log = Log::getInstance();
+		$log->setLogName('remote_music');
+		$log->log(implode("\n",$o));
 	}
 
 	public function currentAction($interval = 5)
 	{
 		$this->defaultViewType = 'plain';
+
+		$request = Util('Request');
+		$count = $request->params['count'];
+
 		$rs = $this->_model->latestVisitorCount($interval);
+
+		while($count == $rs[0]['count'])
+		{
+			usleep(10000);
+			$rs = $this->_model->latestVisitorCount($interval);
+		}
+
 		$this->viewParams['current'] = $rs[0]['count'];
 	}
 
@@ -40,6 +58,8 @@ Class VisitorController extends Controller
 		  }
 
 		  $request = Util('Request');
+
+		  $start = time();
 
 		  // infinite loop until the data file is not modified
 		  $lastmodif    = isset($request->params['timestamp']) ? $request->params['timestamp'] : 0;

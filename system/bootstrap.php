@@ -9,6 +9,7 @@ define('APP_PATH', realpath(BASE_PATH . 'application') . DIR_SEP);
 define('INCLUDE_PATH', realpath(BASE_PATH . 'includes') . DIR_SEP);
 define('LIBRARY_PATH', realpath(BASE_PATH . 'library') . DIR_SEP);
 define('CACHE_PATH', realpath(BASE_PATH . 'cache') . DIR_SEP);
+define('LOG_PATH', realpath(BASE_PATH . 'log') . DIR_SEP);
 define('VENDOR_PATH', realpath(BASE_PATH . 'vendor') . DIR_SEP);
 
 //application directory paths

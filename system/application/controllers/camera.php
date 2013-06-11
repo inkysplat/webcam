@@ -4,8 +4,11 @@ Class CameraController extends Controller
 {
 	public $defaultViewType = 'json';
 
+	private $deps = array();
+
 	public function __construct($deps)
 	{
+		$this->deps = $deps;
 		parent::__construct($deps);
 		$this->_setParams();
 	}
@@ -109,6 +112,24 @@ Class CameraController extends Controller
 			$this->_model->addSnapshot($insert);
 
 			$this->viewParams['success'] = $success;
+
+			$api = new ApiModel($this->deps);
+
+			$status = array();
+
+			$status['lastfm'] = $api->getLastfmTrack();
+			$status['twitter'] = $api->getTwitterTweet();
+
+			if($api->getGithubCommitMessage() != '')
+			{
+				$status['github']  = $api->getGithubCommitMessage().' (';
+				$status['github'] .= $api->getGithubCommitter('username').')';
+			}
+
+			foreach($status as $a=>$s)
+			{
+				$api->saveApiUpdate($a,$s);
+			}
 		}
 	}
 

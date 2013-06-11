@@ -62,6 +62,11 @@ Class ApiController extends Controller
 			$cache->setCacheFilename($gh['cache_file']);
 			$cache->setCache('github', $decoded);
 			$cache->writeCache();
+
+			$message = $decoded['commits'][0]['message'].' ('.
+				$decoded['commits'][0]['author']['username'].')';
+
+			$this->_model->saveApiUpdate('github', $message);
 		}
 	}
 }

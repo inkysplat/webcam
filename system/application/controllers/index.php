@@ -10,7 +10,6 @@ Class IndexController extends Controller{
 	}
 
 	public function indexAction(){
-		$this->viewParams['refresh'] = true;
 		$this->viewParams['lastfm'] = $this->_api->getLastfmTrack();
 		$this->viewParams['twitter'] = $this->_api->getTwitterTweet();
 
