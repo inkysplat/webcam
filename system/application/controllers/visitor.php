@@ -22,12 +22,15 @@ Class VisitorController extends Controller
 
 		$this->_model->addVisitor($params);
 
-		$o = array();
-		exec('ssh adam@82.152.190.66 "aplay /tmp/get_lucky_clip.ogg"',$o,$rtn);
+		if(function_exists('exec'))
+		{
+			$o = array();
+			exec('ssh adam@82.152.190.66 "aplay /tmp/get_lucky_clip.ogg"',$o,$rtn);
 
-		$log = Log::getInstance();
-		$log->setLogName('remote_music');
-		$log->log(implode("\n",$o));
+			$log = Log::getInstance();
+			$log->setLogName('remote_music');
+			$log->log(implode("\n",$o));
+		}
 	}
 
 	public function currentAction($interval = 5)
