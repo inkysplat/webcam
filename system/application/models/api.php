@@ -240,7 +240,7 @@ Class ApiModel extends Model
 		             ->buildOauth($url, 'GET')
 		             ->performRequest();
 
-		        return json_decode(trim($feed));
+		        return json_decode(trim($feed),true);
 
 			break;
 			default:
