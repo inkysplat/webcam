@@ -47,7 +47,7 @@ Class ApiModel extends Model
 				if(isset($a['endpoint']) && !empty($a['endpoint']))
 				{
 					//call the end point
-					$data[$name] = $this->_callEndPoint($a['endpoint']);
+					$data[$name] = $this->_callEndPoint($name,$a['endpoint']);
 
 					//write to the cache file
 					$cache->setCache($name,$data[$name],$a['timetolive']);
@@ -219,9 +219,32 @@ Class ApiModel extends Model
 	 * @param  string $url [description]
 	 * @return  array      [description]
 	 */
-	private function _callEndPoint($url)
+	private function _callEndPoint($service, $url)
 	{
-		$file = file_get_contents($url);
-		return json_decode($file,true);
+		switch($service)
+		{
+			case 'twitter':
+				$config = App('Config');
+				$config->ini('api');
+				$settings = $config->get('twitter');
+
+				$params = array(
+					'consumer_key'=>$settings['consumer_key'],
+					'consumer_secret'=>$settings['consumer_secret'],
+					'oauth_access_token_secret'=>$settings['access_secret'],
+					'oauth_access_token'=>$settings['access_token']);
+
+				$twitter = new Twitter($params);
+
+				return $twitter->setGetfield($settings['get_field'])
+		             ->buildOauth($url, 'GET')
+		             ->performRequest();
+
+			break;
+			default:
+				$file = file_get_contents($url);
+				return json_decode($file,true);
+			break;
+		}		
 	}
 }
