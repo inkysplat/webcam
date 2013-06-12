@@ -236,7 +236,7 @@ Class ApiModel extends Model
 
 				$twitter = new Twitter($params);
 
-				$feed = $twitter->setGetfield($settings['get_field'])
+				$feed = $twitter->setGetfield($settings['get_fields'])
 		             ->buildOauth($url, 'GET')
 		             ->performRequest();
 
