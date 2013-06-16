@@ -30,7 +30,7 @@ Class SocialModel extends Model
 		$config->ini('api');
 
 
-		$api = array('lastfm','twitter','github','instagram');
+		$api = array('lastfm','twitter','github','instagram','blog');
 
 		foreach($api as $name)
 		{
@@ -80,7 +80,10 @@ Class SocialModel extends Model
 				return $this->getGithubCommitMessage().' ('.$this->getGithubCommitter('username').')';
 				break;
 			case 'instagram':
-				return $this->getInstgramLatestImage();
+				return $this->getInstagramLatestImage();
+				break;
+			case 'blog':
+				return $this->getBlogTitle();
 				break;
 			default:
 				return 'service-not-configured';
@@ -111,6 +114,28 @@ Class SocialModel extends Model
 	public function getAllApiData()
 	{
 		return $this->data;
+	}
+
+	public function getBlogTitle()
+	{
+		if(isset($this->data['blog']))
+		{
+			if(isset($this->data['blog']['channel']['item'][0]['title']))
+			{
+				return utf8_encode($this->data['blog']['channel']['item'][0]['title']);
+			}
+		}
+	}
+
+	public function getBlogUrl()
+	{
+		if(isset($this->data['blog']))
+		{
+			if(isset($this->data['blog']['channel']['item'][0]['link']))
+			{
+				return $this->data['blog']['channel']['item'][0]['link'];
+			}
+		}
 	}
 
 
@@ -147,6 +172,37 @@ Class SocialModel extends Model
 		}
 
 		return '';
+	}
+
+	public function getLastfmTrackImage()
+	{
+		$show = '';
+		if(isset($this->data['lastfm']))
+		{
+			if(isset($this->data['lastfm']['recenttracks']['track']['image']))
+			{
+				$images = $this->data['lastfm']['recenttracks']['track']['image'];
+				foreach($images as $image)
+				{
+					if($image['size'] == 'extralarge' && $image['#text'] != '')
+					{
+						$show = $image['#text'];
+					}else{
+						if($show == '' && $image['size'] == 'large' && $image['#text'] != '')
+						{
+							$show = $image['#text'];
+						}
+					}
+				}
+			}
+		}
+
+		if($show == '')
+		{
+			$show = 'http://userserve-ak.last.fm/serve/300x300/80529101.png';
+		}
+
+		return $show;
 	}
 
 	/**

@@ -36,3 +36,6 @@ INSERT INTO `social_current` (`api_name`, `message`, `hash`, `datetime`)
 VALUES ('instagram', '', '', now());
 
 -- executed above on the 16th June 2013
+
+INSERT INTO `social_current` (`api_name`, `message`, `hash`, `datetime`)
+VALUES ('blog', '', '', now());

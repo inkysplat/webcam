@@ -72,29 +72,7 @@
 		top:0;
 		right:0;
 		padding: $gutter;
-		ul{
-			li{
-				margin-left: 4px;
-				&.active{
-					a{
-						background: $overRGBA;
-					}
-				}
-				a{
-					display: block;
-					background: $outRGBA;
-					text-decoration: none;
-					padding: 8px 0px;
-					width: 32px;
-					text-align: center;
-					color: #fff;
-					&:hover{
-						background: $overRGBA;
-					}
-				}
-			}
-		}
-		.message{
+		.visitor-message{
 			background: rgba(50,50,50,0.3);
 			padding: 3px;
 		}
@@ -103,17 +81,44 @@
 	.ticker{
 		-webkit-font-smoothing: antialiased;
 		width: 100%;
-		line-height: 24px;
-		display: none;
-		ul{
-			height: 24px;
+		margin: 0;
+		padding: 0;
+		padding-bottom: $gutter;
+
+		.message{
+			margin-right: 78px;
+			padding-bottom: $gutter;
+
+			background: rgba(50, 50, 50, 0.3);
 			overflow: hidden;
-			li{
-				height: 24px;
-				padding-bottom: $gutter;
-				background: rgba(50, 50, 50, 0.3);
+			position: absolute;
+			display: none;
+			left: 0;
+			bottom: 0;
+		}
+
+		.image-message{
+			display: none;
+			img{
+				position: relative;
+			}
+			span{
+				position: absolute;
+				background: rgba(50,50,50,0.3);
+				left: 0;
+				margin-top: 10px;
+				text-wrap: wrap;
 			}
 		}
+		#instagram,#lastfm{
+			img{
+				width: 306px;
+			}
+			span{
+				width: 306px;
+			}
+		}
+
 	}
 
 	.credit{
@@ -143,7 +148,10 @@
 
 	.tweet{
 		a{
-			color: $outRGBA;
+			color: white;
+			i{
+				color: $outRGBA;
+			}
 			text-decoration: none;
 			&:hover{
 				color: $overRGBA;	

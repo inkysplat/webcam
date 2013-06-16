@@ -10,11 +10,19 @@ Class IndexController extends Controller{
 	}
 
 	public function indexAction(){
-		$this->viewParams['lastfm'] = $this->_api->getLastfmTrack();
+
 		$this->viewParams['twitter'] = $this->_api->getTwitterTweet();
+
+		$this->viewParams['blog']['url'] = $this->_api->getBlogUrl();
+		$this->viewParams['blog']['title'] = $this->_api->getBlogTitle();
+
+		$this->viewParams['lastfm']['url'] = $this->_api->getLastfmTrackImage();
+		$this->viewParams['lastfm']['caption'] = $this->_api->getLastfmTrack();
 
 		$this->viewParams['instagram']['url'] = $this->_api->getInstagramLatestImage();
 		$this->viewParams['instagram']['caption'] = $this->_api->getInstagramLatestCaption();
+
+		$this->viewParams['github'] = '';
 
 		if($this->_api->getGithubCommitMessage() != '')
 		{
