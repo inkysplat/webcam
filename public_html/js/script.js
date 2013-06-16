@@ -170,17 +170,17 @@ if( played!=null && played!="")
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-$('.message .icon-pencil').click(function(){
-	$('.message span').hide();
-	$('.message input').show();
-	$('.message input').keypress(function (e) {
+$('.visitor-message .icon-pencil').click(function(){
+	$('.visitor-message span').hide();
+	$('.visitor-message input').show();
+	$('.visitor-message input').keypress(function (e) {
 	  if (e.which == 13) {
-	    var val = $('.message input').val();
+	    var val = $('.visitor-message input').val();
 	    $.ajax({
 	    	url: '/visitor/postMessage/message/'+encodeURI(val)
 	    }).done(function(data){
-	    	$('.message input').hide();
-	    	$('.message span').show();
+	    	$('.visitor-message input').hide();
+	    	$('.visitor-message span').show();
 	    });
 	  }
 	});
