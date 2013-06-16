@@ -19,11 +19,7 @@ Class VisitorModel extends Model
 
 	public function latestVisitorCount($interval = 0)
 	{
-		$sql = "SELECT count(v.visitor_id) AS count FROM (".
-					"SELECT visitor_id, MAX(datetime) AS datetime ".
-					"FROM visitors GROUP BY remote_addr".
-				") AS v";
-
+		$sql = "SELECT count(v.visitor_id) AS count FROM visitors AS v ";
 		if($interval > 0){
 			$interval .= ' MINUTE';
 			$sql .= " WHERE v.datetime > DATE_SUB(NOW(), INTERVAL ".$interval." )";

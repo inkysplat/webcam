@@ -13,6 +13,9 @@ Class IndexController extends Controller{
 		$this->viewParams['lastfm'] = $this->_api->getLastfmTrack();
 		$this->viewParams['twitter'] = $this->_api->getTwitterTweet();
 
+		$this->viewParams['instagram']['url'] = $this->_api->getInstagramLatestImage();
+		$this->viewParams['instagram']['caption'] = $this->_api->getInstagramLatestCaption();
+
 		if($this->_api->getGithubCommitMessage() != '')
 		{
 			$this->viewParams['github']  = $this->_api->getGithubCommitMessage().' (';

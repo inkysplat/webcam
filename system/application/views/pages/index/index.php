@@ -8,6 +8,7 @@
 					</div>
 				</aside>
 			</header>
+			<img src="<?= $instagram['url'];?>">
 			<footer>
 				<aside class="ticker">
 					<ul>

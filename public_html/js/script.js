@@ -6,11 +6,11 @@ var userTimestamp = 0;
 function getCurrentUsers()
 {
 	$.ajax({
-	  url: "/visitor/current/timestamp/"+userCount,
+	  url: "/visitor/current/timestamp/"+userTimestamp,
 	  context: document.body
 	}).done(function(data) {
 	  $('#current-users').html(data.count);
-	  var userTimestamp = data.timestamp;
+	  userTimestamp = data.timestamp;
 	});
 	setTimeout(function(){getCurrentUsers()},'8000');
 }
@@ -35,7 +35,7 @@ function getMessage(){
 		function(data){
 			$('.message span').html(data.msg);
 			messageTimestamp = data.timestamp;
-			$('#get-lucky-audio').play();
+			$('#get-lucky-audio').trigger('play');
 		});
 	setTimeout(function(){getMessage()},'8000');
 }
@@ -78,7 +78,7 @@ $('.ticker').fadeIn();
 $.ajax({
   url: "/visitor/add",
   context: document.body
-}).done(function(){getCurrentUsers()});
+}).done(function(){getCurrentUsers();});
 
 getApiData();
 getMessage();

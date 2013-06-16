@@ -30,7 +30,7 @@ Class SocialModel extends Model
 		$config->ini('api');
 
 
-		$api = array('lastfm','twitter','github');
+		$api = array('lastfm','twitter','github','instagram');
 
 		foreach($api as $name)
 		{
@@ -78,6 +78,12 @@ Class SocialModel extends Model
 				break;
 			case 'github':
 				return $this->getGithubCommitMessage().' ('.$this->getGithubCommitter('username').')';
+				break;
+			case 'instagram':
+				return $this->getInstgramLatestImage();
+				break;
+			default:
+				return 'service-not-configured';
 				break;
 		}
 	}
@@ -199,6 +205,29 @@ Class SocialModel extends Model
 			}
 		}
 	}
+
+	public function getInstagramLatestImage($image_size = 'low_resolution')
+	{
+		if(isset($this->data['instagram']))
+		{
+			if(isset($this->data['instagram']['data'][0]['images'][$image_size]['url']))
+			{
+				return $this->data['instagram']['data'][0]['images'][$image_size]['url'];
+			}
+		}
+	}
+
+	public function getInstagramLatestCaption()
+	{
+		if(isset($this->data['instagram']))
+		{
+			if(isset($this->data['instagram']['data'][0]['caption']['text']))
+			{
+				return $this->data['instagram']['data'][0]['caption']['text'];
+			}
+		}
+	}
+
 
 	/**
 	 * Save a new time stamp and hash of the cache file to database

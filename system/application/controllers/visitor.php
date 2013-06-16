@@ -18,6 +18,8 @@ Class VisitorController extends Controller
 
 	public function addAction()
 	{
+		$this->defaultViewType = 'plain';
+
 		$params = array(
 			'remote_addr' => $_SERVER['REMOTE_ADDR'],
 			'user_agent' => $_SERVER['HTTP_USER_AGENT']
@@ -34,6 +36,8 @@ Class VisitorController extends Controller
 		}
 
 		file_put_contents($this->counterFile, $rs[0]['count']);
+
+		$this->viewParams['counter'] = $rs[0]['count'];
 
 	}
 

@@ -4,10 +4,14 @@ Class SocialController extends Controller
 {
 	public function __construct($deps)
 	{
+		$this->defaultViewType = 'json';
+		
 		parent::__construct($deps);
 	}
 
 	public function fetchAction($service = ''){
+
+		$this->defaultViewType = 'json';
 
 		if($service != '')
 		{
@@ -20,8 +24,7 @@ Class SocialController extends Controller
 		}else{
 			$this->viewParams['data'] = $this->_model->getAllApiData();
 		}
-
-		$this->defaultViewType = 'json';
+		
 	}
 
 	public function messagesAction()

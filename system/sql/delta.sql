@@ -31,3 +31,6 @@ COMMENT='' COLLATE 'utf8_general_ci';
 
 ALTER TABLE `visitors`
 COMMENT='' COLLATE 'utf8_general_ci';
+
+INSERT INTO `social_current` (`api_name`, `message`, `hash`, `datetime`)
+VALUES ('instagram', '', '', now());
