@@ -34,3 +34,5 @@ COMMENT='' COLLATE 'utf8_general_ci';
 
 INSERT INTO `social_current` (`api_name`, `message`, `hash`, `datetime`)
 VALUES ('instagram', '', '', now());
+
+-- executed above on the 16th June 2013
