@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <database id="database">
-        <dbname>gandv_webcam</dbname>
+        <dbname>gandv_webcam_prod</dbname>
         <user>root</user>
         <password></password>
         <host>127.0.0.1</host>

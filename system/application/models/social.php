@@ -1,9 +1,9 @@
 <?php
 
-Class ApiModel extends Model
+Class SocialModel extends Model
 {
 
-	private $date = array();
+	private $data = array();
 
 	/**
 	 * Constructor
@@ -28,7 +28,7 @@ Class ApiModel extends Model
 		$cache = Util('Cache');
 
 		$config->ini('api');
-		$data = array();
+
 
 		$api = array('lastfm','twitter','github');
 
@@ -39,31 +39,47 @@ Class ApiModel extends Model
 			//set cache file
 			$cache->setCacheFilename($a['cache_file']);
 
-			$data[$name] = $cache->getCache($name);
+			$this->data[$name] = $cache->getCache($name);
 
 			//empty data
-			if(!$data[$name])
+			if(!$this->data[$name])
 			{
 				if(isset($a['endpoint']) && !empty($a['endpoint']))
 				{
 					//call the end point
-					$data[$name] = $this->_callEndPoint($name,$a['endpoint']);
+					$this->data[$name] = $this->_callEndPoint($name,$a['endpoint']);
 
 					//write to the cache file
-					$cache->setCache($name,$data[$name],$a['timetolive']);
+					$cache->setCache($name,$this->data[$name],$a['timetolive']);
 					$cache->writeCache();
 
-					$encoded = json_encode($data[$name]);
+					$encoded = json_encode($this->data[$name]);
 					//save a raw version of the file also
 					$cache->writeRaw($a['cache_file'], $encoded);
 
+					$message = $this->getMessage($name);
+
 					//update the timestamp
-					$this->touchApiCache(md5($encoded), $name);
+					$this->touchCache(md5($encoded), $message, $name);
 				}
 			}
 		}
+	}
 
-		$this->data = $data;
+	public function getMessage($service)
+	{
+		switch($service)
+		{
+			case 'twitter':
+				return $this->getTwitterTweet();
+				break;
+			case 'lastfm':
+				return $this->getLastfmTrack();
+				break;
+			case 'github':
+				return $this->getGithubCommitMessage().' ('.$this->getGithubCommitter('username').')';
+				break;
+		}
 	}
 
 	/**
@@ -184,18 +200,6 @@ Class ApiModel extends Model
 		}
 	}
 
-	public function saveApiUpdate($service, $message)
-	{
-		$params = array(
-			'api_name'=>$service, 
-			'status'=>$message,
-			'hash'=>md5($message),
-			'datetime'=> date('Y-m-d H:i:s')
-			);
-
-		$this->_db->insert('api_updates',$params);
-	}
-
 	/**
 	 * Save a new time stamp and hash of the cache file to database
 	 * 
@@ -203,14 +207,14 @@ Class ApiModel extends Model
 	 * @param  string $name [description]
 	 * @return void
 	 */
-	public function touchApiCache($hash, $name)
+	public function touchCache($hash, $message, $name)
 	{
-		$this->_db->update('api_cache', 
+		$this->_db->update('social_current', 
 				array(
 					'hash'=>$hash,
+					'message' => $message,
 					'datetime'=>date('Y-m-d H:i:s')), 
 				array('api_name' => $name));
-
 	}
 
 	/**

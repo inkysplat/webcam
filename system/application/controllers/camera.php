@@ -126,10 +126,6 @@ Class CameraController extends Controller
 				$status['github'] .= $api->getGithubCommitter('username').')';
 			}
 
-			foreach($status as $a=>$s)
-			{
-				$api->saveApiUpdate($a,$s);
-			}
 		}
 	}
 
@@ -186,11 +182,6 @@ Class CameraController extends Controller
 			{
 				$this->viewParams['full'] = true;
 			}
-
-			// if($this->format == 'xml')
-			// {
-			// 	$this->viewParams['xml'] = View::renderXML($images);
-			// }
 		}
 
 	}

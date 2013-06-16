@@ -6,7 +6,7 @@ Class IndexController extends Controller{
 	{
 		parent::__construct($deps);
 
-		$this->_api = new ApiModel(array('db'=>$deps['db']));
+		$this->_api = new SocialModel(array('db'=>$deps['db']));
 	}
 
 	public function indexAction(){

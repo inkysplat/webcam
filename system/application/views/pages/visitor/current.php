@@ -1,1 +1,1 @@
-<?= $current;?>
+<?= json_encode($current);?>

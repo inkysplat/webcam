@@ -6,11 +6,14 @@ Class VisitorController extends Controller
 
 	private $messageFile = 'message.txt';
 
+	private $counterFile = 'counter.txt';
+
 	public function __construct($deps)
 	{
 		parent::__construct($deps);
 
 		$this->messageFile = CACHE_PATH.$this->messageFile;
+		$this->counterFile = CACHE_PATH.$this->counterFile;
 	}
 
 	public function addAction()
@@ -22,30 +25,40 @@ Class VisitorController extends Controller
 
 		$this->_model->addVisitor($params);
 
-		if(function_exists('exec'))
-		{
-			$o = array();
-			exec('ssh adam@82.152.190.66 "aplay /tmp/get_lucky_clip.ogg"',$o,$rtn);
+		$rs = $this->_model->latestVisitorCount(10);
 
-			$log = Log::getInstance();
-			$log->setLogName('remote_music');
-			$log->log(implode("\n",$o));
+		if(!file_exists($this->counterFile))
+		{
+			touch($this->counterFile);
+			chmod($this->counterFile, 0777);
 		}
+
+		file_put_contents($this->counterFile, $rs[0]['count']);
+
 	}
 
-	public function currentAction($interval = 5)
+	public function currentAction()
 	{
-		$this->defaultViewType = 'plain';
+		$this->defaultViewType = 'json';
 
-		$request = Util('Request');
-		$count = $request->params['count'];
+		  if(!file_exists($this->counterFile))
+		  {
+		  	return false;
+		  }
 
-		$rs = $this->_model->latestVisitorCount($interval);
-		$this->viewParams['current'] = $rs[0]['count'];
+		  $request = Util('Request');
+
+		  // infinite loop until the data file is modified
+		  $lastmodif    = isset($request->params['timestamp']) ? $request->params['timestamp'] : 0;
+
+		  $file = $this->loadFileDelayed($this->counterFile, $lastmodif);
+
+		  $this->viewParams['current'] = array('count'=>$file,'timestamp'=>time());
+
 	}
 
 	public function getMessageAction()
-	{		  
+	{
 		  $this->defaultViewType = 'json';
 
 		  if(!file_exists($this->messageFile))
@@ -55,29 +68,22 @@ Class VisitorController extends Controller
 
 		  $request = Util('Request');
 
-		  $start = time();
-
-		  // infinite loop until the data file is not modified
+		  // infinite loop until the data file is modified
 		  $lastmodif    = isset($request->params['timestamp']) ? $request->params['timestamp'] : 0;
-		  $currentmodif = filemtime($this->messageFile);
-		  while ($currentmodif <= $lastmodif) // check if the data file has been modified
-		  {
-		    usleep(10000); // sleep 10ms to unload the CPU
-		    clearstatcache();
-		    $currentmodif = filemtime($this->messageFile);
-		  }
-		 
+
+		  $file = $this->loadFileDelayed($this->messageFile, $lastmodif);
+
 		  // return a json array
 		  $response = array();
-		  $response['msg']       = urldecode(file_get_contents($this->messageFile));
-		  $response['timestamp'] = $currentmodif;
+		  $response['msg']       = urldecode($file);
+		  $response['timestamp'] = time();
 
 		  $this->viewParams['response'] = $response;
 	}
 
 	public function postMessageAction($message = '')
 	{
-		$this->defaultViewType = 'html';
+		$this->defaultViewType = 'plain';
 
 		$request = Util('Request');
 		if($request->params['message'] != '')
@@ -89,8 +95,9 @@ Class VisitorController extends Controller
 			}
 
 			file_put_contents($this->messageFile, $request->params['message']);
-		}		
+		}
 	}
 
 }
+
 

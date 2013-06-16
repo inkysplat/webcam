@@ -1,6 +1,6 @@
 <?php
 
-Class ApiController extends Controller
+Class SocialController extends Controller
 {
 	public function __construct($deps)
 	{
@@ -24,7 +24,7 @@ Class ApiController extends Controller
 		$this->defaultViewType = 'json';
 	}
 
-	public function ajaxAction()
+	public function messagesAction()
 	{
 		$this->defaultViewType = 'json';
 
@@ -55,8 +55,6 @@ Class ApiController extends Controller
 			$cache = Util('Cache');
 			$cache->writeRaw($gh['cache_file'],$payload);
 
-			$this->_model->touchApiCache(md5($payload),'github');
-
 			$decoded = json_decode($payload,true);
 
 			$cache->setCacheFilename($gh['cache_file']);
@@ -66,7 +64,7 @@ Class ApiController extends Controller
 			$message = $decoded['commits'][0]['message'].' ('.
 				$decoded['commits'][0]['author']['username'].')';
 
-			$this->_model->saveApiUpdate('github', $message);
+			$this->_model->touchCache(md5($payload), $message, 'github');
 		}
 	}
 }

@@ -77,4 +77,17 @@ Abstract Class Controller
 			$this->siteParams = $config->get('site','array');
 		}
 	}
+
+	public function loadFileDelayed($file, $timestamp)
+	{
+	  $currentmodif = filemtime($file);
+	  while ($currentmodif <= $timestamp) // check if the data file has been modified
+	  {
+	    usleep(10000); // sleep 10ms to unload the CPU
+	    clearstatcache();
+	    $currentmodif = filemtime($file);
+	  }
+
+	  return file_get_contents($file);
+	}
 }

@@ -2,22 +2,22 @@
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
-var userCount = 0;
+var userTimestamp = 0;
 function getCurrentUsers()
 {
 	$.ajax({
-	  url: "/visitor/current/interval/20/count/"+userCount,
+	  url: "/visitor/current/timestamp/"+userCount,
 	  context: document.body
 	}).done(function(data) {
-	  $('#current-users').html(data);
-	  var userCount = data;
+	  $('#current-users').html(data.count);
+	  var userTimestamp = data.timestamp;
 	});
-	setTimeout(function(){getCurrentUsers()},'10000');
+	setTimeout(function(){getCurrentUsers()},'8000');
 }
 
 function getApiData()
 {
-	$.getJSON('/api/ajax', function(data) {
+	$.getJSON('/social/messages', function(data) {
 		$('#lastfm').html(data.lastfm);
 		$('#twitter').html(data.twitter);
 	});
