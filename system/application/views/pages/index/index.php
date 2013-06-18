@@ -7,7 +7,7 @@
 						<span></span> <a id="write-message"><i class="icon-pencil"></i></a>
 					</div>**/ ?>
           <div class="buzz-message">
-          <span>BUZZ <i class="icon-bullhorn icon-2x"></i></span>
+          <span>HONK!! <i class="icon-bullhorn icon-2x"></i></span>
           </div>
 				</aside>
 			</header>
