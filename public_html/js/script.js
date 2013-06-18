@@ -2,6 +2,8 @@
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
+
+// GET CURRENT USERS ON PAGE
 var userTimestamp = 0;
 function getCurrentUsers()
 {
@@ -15,6 +17,7 @@ function getCurrentUsers()
 	setTimeout(function(){getCurrentUsers()},'8000');
 }
 
+//GET LATEST TWEETS/LASTFM
 function getApiData()
 {
 	$.getJSON('/social/messages', function(data) {
@@ -24,7 +27,8 @@ function getApiData()
 	setTimeout(function(){getApiData()},'20000');
 }
 
-var messageTimestamp = 0;
+//////////// NOT USED (WAS USED FOR USER COMMENT/MESSAGE - AJN 18/06/13)
+/**var messageTimestamp = 0;
 function getMessage(){
 	$.getJSON('/visitor/getMessage/timestamp/'+messageTimestamp,
 		function(data){
@@ -33,7 +37,7 @@ function getMessage(){
 			$('#get-lucky-audio').trigger('play');
 		});
 	setTimeout(function(){getMessage()},'8000');
-}
+}***/
 
 function setCookie(c_name,value,exdays){
 	var exdate=new Date();
@@ -81,7 +85,7 @@ $.ajax({
 }).done(function(){getCurrentUsers();});
 
 getApiData();
-//getMessage();
+//getMessage();NOT USED
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
