@@ -9,7 +9,7 @@
         <meta name="author" content="Adam Nicholls">
         <meta name="contact" content="technical@goramandvincent.com">
         <meta name="viewport" content="width=device-width">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/font-awesome.min.css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css">
         <script>

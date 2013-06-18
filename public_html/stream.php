@@ -7,7 +7,7 @@ if(preg_match('/robot|spider|crawler|curl|^$/i', $_SERVER['HTTP_USER_AGENT']))
 
 date_default_timezone_set('Europe/London');
 
-staticImage();
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 /////////////////////// NOTHING GETS EXECUTED BELOW WE WANT IMAGES ONLY ///////////
