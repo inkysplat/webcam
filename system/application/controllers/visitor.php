@@ -99,6 +99,9 @@ Class VisitorController extends Controller
 			}
 
 			file_put_contents($this->messageFile, $request->params['message']);
+      
+      //play remote music
+      file_get_contents('webcam-pi');
 		}
 	}
 
