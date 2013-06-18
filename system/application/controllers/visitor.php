@@ -101,13 +101,14 @@ Class VisitorController extends Controller
 			file_put_contents($this->messageFile, $request->params['message']);
       
       //play remote music
-      file_get_contents('webcam-pi');
+      file_get_contents('http://82.152.190.66/');
 		}
 	}
   
   public function playAudioAction()
   {
-    file_get_contents('webcam-pi');
+    $this->defaultViewType = 'json';
+    $this->viewParams['response'] = file_get_contents('http://82.152.190.66/');
   }
 
 }

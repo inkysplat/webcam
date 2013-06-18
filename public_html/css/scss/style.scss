@@ -72,11 +72,16 @@
 		top:0;
 		right:0;
 		padding: $gutter;
+    .buzz-message,
 		.visitor-message{
 			background: rgba(50,50,50,0.3);
 			padding: 3px;
 		}
-	}
+    .buzz-message{
+      cursor: hand;
+      cursor: pointer;
+    }
+  }
 
 	.ticker{
 		-webkit-font-smoothing: antialiased;
