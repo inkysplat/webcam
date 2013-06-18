@@ -104,6 +104,11 @@ Class VisitorController extends Controller
       file_get_contents('webcam-pi');
 		}
 	}
+  
+  public function playAudioAction()
+  {
+    file_get_contents('webcam-pi');
+  }
 
 }
 
