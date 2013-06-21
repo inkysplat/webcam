@@ -191,6 +191,8 @@ Class CameraController extends Controller
 
 		$request = Util('Request');
 
+		$this->viewParams['exclude_script_js'] = true;
+
 		if(isset($request->params['view']))
 		{
 			$id = $request->params['view'];
