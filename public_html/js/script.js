@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
-// GET CURRENT USERS ON PAGE
+// GET CURRENT USERS ON PAGE - LONG POLL
 var userTimestamp = 0;
 function getCurrentUsers()
 {
@@ -21,8 +21,13 @@ function getCurrentUsers()
 function getApiData()
 {
 	$.getJSON('/social/messages', function(data) {
-		$('#lastfm .tweet').html(data.lastfm);
-		$('#twitter .tweet').html(data.twitter);
+		$('#lastfm .tweet a').html(data.lastfm.msg);
+		$('#lastfm img').attr('src',data.lastfm.img);
+		$('#twitter .tweet a').html(data.twitter.msg);
+		$('#blog .tweet a').html(data.blog.msg);
+		$('#blog .tweet a').attr('href',data.blog.url);
+		$('#instagram img').attr('src',data.instagram.msg);
+		$('#instagram .tweet a').html(data.instagram.caption);
 	});
 	setTimeout(function(){getApiData()},'20000');
 }
@@ -39,32 +44,6 @@ function getMessage(){
 	setTimeout(function(){getMessage()},'8000');
 }***/
 
-function setCookie(c_name,value,exdays){
-	var exdate=new Date();
-	exdate.setDate(exdate.getDate() + exdays);
-	var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-	document.cookie=c_name + "=" + c_value;
-}
-function getCookie(c_name)
-{
-	var c_value = document.cookie;
-	var c_start = c_value.indexOf(" " + c_name + "=");
-	if (c_start == -1){
-	  	c_start = c_value.indexOf(c_name + "=");
-	}
-	if (c_start == -1){
-	  	c_value = null;
- 	}else{
-	  	c_start = c_value.indexOf("=", c_start) + 1;
-	  	var c_end = c_value.indexOf(";", c_start);
-	  	if (c_end == -1){
-			c_end = c_value.length;
-	   	}
-		c_value = unescape(c_value.substring(c_start,c_end));
-	}
-	return c_value;
-}
-
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -74,7 +53,12 @@ if(localClient)
 {
 	var streamUrl = 'http://192.168.0.250:8443/?action=stream';
 }else{
-	var streamUrl = '/stream.php';
+	if(staticStream)
+	{
+		var streamUrl = '/stream.php?static=true';
+	}else{
+		var streamUrl = '/stream.php';
+	}
 }
 $('#camara-canvas').css({'background-image':"url("+streamUrl+")"});
 $('.ticker').fadeIn();
@@ -98,14 +82,15 @@ var $messages = $('.message');
 	})
 ////////////////// LIST OF MESSAGES TO CYCLE THROUGH //////////////////
 var tickers = new Array();
-tickers[0] = 'time';
-tickers[1] = 'twitter';
-tickers[2] = 'blog';
-tickers[3] = 'lastfm';
-tickers[4] = 'blank'
-tickers[5] = 'instagram';
-tickers[6] = 'made';
-tickers[7] = 'blank'
+tickers[0] = 'counter';
+tickers[1] = 'time';
+tickers[2] = 'twitter';
+tickers[3] = 'blog';
+tickers[4] = 'lastfm';
+tickers[5] = 'blank'
+tickers[6] = 'instagram';
+tickers[7] = 'made';
+tickers[8] = 'blank'
 
 var image_tickers = new Array();
 image_tickers[0] = 'instagram';
@@ -159,26 +144,17 @@ setInterval(function(){
 		nextTick = 0;
 	}
 }, 5000);
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
-var played = getCookie('get_lucky');
-if( played!=null && played!="")
-{}else{
-	$('#get-lucky-audio').trigger('play');
-	setCookie('get_lucky',true,2);
-}
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 $('.buzz-message').click(function(){
-  $('.buzz-message span').css("color",'red');
-  $.ajax({url: '/visitor/playAudio', async: false}).done(
+  $('.icon-bullhorn').css({'color':'red'});
+  $('#police-siren-audio').trigger('play');
+  $.ajax({url: '/visitor/playAudio'}).done(
   function(data){
     console.log(data);
-    $('.buzz-message span').css("color",'white');
+    $('.icon-bullhorn').css({'color':'white'});
   });
 });
 
@@ -198,5 +174,22 @@ $('.visitor-message .icon-pencil').click(function(){
 	    	$('.visitor-message span').show();
 	    });
 	  }
+	});
+});
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+$(document).ready(function() {
+	$(".fancybox").fancybox({
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
 	});
 });

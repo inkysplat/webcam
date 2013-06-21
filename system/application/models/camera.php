@@ -85,6 +85,12 @@ Class CameraModel extends Model
 
 	}
 
+	public function getImageById($id)
+	{
+		$sql = "SELECT * FROM snapshots WHERE image_id = ?";
+		return $this->_db->fetchAssoc($sql,array($id));
+	}
+
 	/**
 	 * Turn a date into a path
 	 * 

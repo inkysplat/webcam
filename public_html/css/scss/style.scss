@@ -60,6 +60,9 @@
 		}
 	}
 
+	.clearfix{
+		clear: both;
+	}
 
 	.ticker,
 	.credit,
@@ -72,15 +75,22 @@
 		top:0;
 		right:0;
 		padding: $gutter;
-    .buzz-message,
+		text-align: right;
+	    .buzz-message,
 		.visitor-message{
 			background: rgba(50,50,50,0.3);
 			padding: 3px;
 		}
-    .buzz-message{
-      cursor: hand;
-      cursor: pointer;
-    }
+	    .buzz-message{
+	      cursor: hand;
+	      cursor: pointer;
+	    }
+	    .image-list{
+	    	padding-top: 2px;
+	    	i{
+	    		text-decoration:none;
+	    	}
+	    }
   }
 
 	.ticker{
@@ -116,11 +126,12 @@
 			}
 		}
 		#instagram,#lastfm{
+			max-width: 306px;
 			img{
-				width: 306px;
+				max-width: 100%;
 			}
 			span{
-				width: 306px;
+				max-width: 306px;
 			}
 		}
 
@@ -161,5 +172,43 @@
 			&:hover{
 				color: $overRGBA;	
 			}
+		}
+	}
+
+	#gallery{
+		li{
+			list-style-type:none;
+		    margin-right:10px;
+		    margin-bottom:10px;
+		    float:left;
+		}
+	}
+
+	#gallery-dates{
+		float: left;
+		li{
+			list-style-type:none;
+			display: inline;
+			color: black;
+			a{
+				color: black;
+			}
+		}
+	}
+
+	#back-btn{
+		font-weight: bold;
+		color: black;
+	}
+
+	#image-date{
+		background: rgba(50,50,50,0.5);
+	}
+
+	.play-control{
+		float: right;
+		i{
+			color: black;
+			text-decoration: none;
 		}
 	}

@@ -31,13 +31,22 @@ Class SocialController extends Controller
 	{
 		$this->defaultViewType = 'json';
 
-		$this->viewParams['ajax']['lastfm'] = $this->_model->getLastfmTrack();
-		$this->viewParams['ajax']['twitter'] = $this->_model->getTwitterTweet();
+		$services = array('lastfm','twitter','github','blog','instagram');
 
-		if($this->_model->getGithubCommitMessage() != '')
+		foreach($services as $service)
 		{
-			$this->viewParams['ajax']['github']  = $this->_model->getGithubCommitMessage().' (';
-			$this->viewParams['ajax']['github'] .= $this->_model->getGithubCommitter('username').')';
+			$this->viewParams['ajax'][$service]['msg'] = $this->_model->getMessage($service);
+			switch($service){
+				case 'instagram':
+					$this->viewParams['ajax'][$service]['caption'] = $this->_model->getInstagramLatestCaption();
+					break;
+				case 'lastfm':
+					$this->viewParams['ajax'][$service]['img'] = $this->_model->getLastfmTrackImage();
+					break;
+				case 'blog':
+					$this->viewParams['ajax'][$service]['url'] = $this->_model->getBlogUrl();
+					break;
+			}
 		}
 	}
 

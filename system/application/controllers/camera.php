@@ -186,6 +186,78 @@ Class CameraController extends Controller
 
 	}
 
+
+	public function galleryAction(){
+
+		$request = Util('Request');
+
+		if(isset($request->params['view']))
+		{
+			$id = $request->params['view'];
+
+			$image = $this->_model->getImageById($id);
+
+			$this->defaultViewType = 'html';
+			$this->viewParams['view'] = true;
+			$this->viewParams['image'] = $image;
+
+		}else{
+
+			$date = date('Y-m-d');
+			if(isset($request->params['date'])){
+				$date = $request->params['date'];
+			}
+
+			$images = $this->_model->getListOfImages($date);
+
+			if(count($images) > 0)
+			{
+				foreach($images as &$img)
+				{
+					$img['url'] = $this->_setUrlPath($img);
+					//stop duplicate remove all URLs
+					$img['url'] = str_replace(SITE_URL,'',$img['url']);
+				}
+			}
+
+			$this->defaultViewType = 'html';
+			$this->viewParams['date'] = $date;
+			$this->viewParams['gallery'] = true;
+			$this->viewParams['images'] = $images;
+		}
+	}
+
+	public function slideshowAction(){
+
+		$request = Util('Request');
+
+		$date = date('Y-m-d');
+		if(isset($request->params['date'])){
+			$date = $request->params['date'];
+		}
+
+		$images = $this->_model->getListOfImages($date);
+
+		$list = array();
+
+		if(count($images) > 0)
+		{
+			foreach($images as &$img)
+			{
+				$img['url'] = $this->_setUrlPath($img);
+				//stop duplicate remove all URLs
+				$img['url'] = str_replace(SITE_URL,'',$img['url']);
+
+				$list[] = $img['url'];
+			}
+		}
+
+		$this->defaultViewType = 'html';
+		$this->viewParams['exclude_script_js'] = true;
+		$this->viewParams['include_custom_js'] = 'slideshow';
+		$this->viewParams['images'] = $list;
+	}
+
 	private function _setUrlPath($url)
 	{
 		if($url['url'] == null || $url['url'] == '')

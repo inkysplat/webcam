@@ -2,11 +2,15 @@
 
 Class IndexController extends Controller{
 
+	private $deps;
+
 	public function __construct($deps)
 	{
 		parent::__construct($deps);
 
 		$this->_api = new SocialModel(array('db'=>$deps['db']));
+
+		$this->deps = $deps;
 	}
 
 	public function indexAction(){
@@ -31,5 +35,4 @@ Class IndexController extends Controller{
 		}
 
 	}
-
 }

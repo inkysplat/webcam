@@ -6,25 +6,31 @@
 						<input type="text" placeholder="write new message.." style="display: none;">
 						<span></span> <a id="write-message"><i class="icon-pencil"></i></a>
 					</div>**/ ?>
-          <div class="buzz-message">
-          <span>HONK!! <i class="icon-bullhorn icon-2x"></i></span>
-          </div>
+		          <div class="buzz-message">
+		          	<span>HONK!!</span> <i class="icon-bullhorn icon-2x"></i>
+		          </div>
+		          <div class="clearfix"></div>
+		          <div class="image-list">
+		          	<a href="/camera/gallery/date/<?= date('Y-m-d');?>" class="fancybox" data-fancybox-type="iframe">
+		          		<i class="icon-th icon-2x"></i>
+		          	</a>
+		          </div>
 				</aside>
 			</header>
 
 			<footer>
 				<aside class="ticker">
 						<div class="message" id="counter">
-							<strong>Current Users:</strong> <span id="current-users"></span>
+							<strong>Current Users:</strong> <span id="current-users"></span> <i class="icon-user"></i>
 						</div>
 						<div class="message" id="twitter">
-							<strong>Twitter:</strong> <span class="tweet"><a href="http://www.twitter.com/goramandvincent"><?= $twitter;?> <i class="icon-twitter-sign"></i></a></span>
+							<strong>Twitter:</strong> <span class="tweet"><a href="http://www.twitter.com/goramandvincent"><?= $twitter;?></a> <i class="icon-twitter-sign"></i></span>
 						</div>
 						<div class="message" id="blog">
-							<strong>Blog:</strong> <span class="tweet"><a href="<?= $blog['url'];?>" title="<?= $blog['title'];?>"><?= $blog['title']?> <i class="icon-rss-sign"></i></a></span>
+							<strong>Blog:</strong> <span class="tweet"><a href="<?= $blog['url'];?>" title="<?= $blog['title'];?>"><?= $blog['title']?></a> <i class="icon-rss-sign"></i></span>
 						</div>
 						<div class="message" id="github" style="<?= $github == ''?'display:none;':'';?>">
-							<strong>Github:</strong> <span class="tweet"><a href="http://www.github.com/enable"><?= $github;?> <i class="icon-github-sign"></i></a></span>
+							<strong>Github:</strong> <span class="tweet"><a href="http://www.github.com/enable"><?= $github;?></a> <i class="icon-github-sign"></i></span>
 						</div>
 						<div class="message" id="time">
 							<time><i id="image-date" class="icon-time"></i> <?= date('Y-m-d H:i:s', filemtime('webcam.jpg'));?></time>
@@ -48,12 +54,12 @@
 							<?php if($lastfm['url'] && $lastfm['url'] != ''):?>
 								<img src="<?= $lastfm['url'];?>" alt="<?= $lastfm['caption'];?>">
 							<?php endif; ?>
-							<span class="tweet"><a href="http://www.last.fm/user/goramandvincent/"><?= $lastfm['caption'] ?> <i class="icon-lastfm-sign"></i></a></span>
+							<span class="tweet"><a href="http://www.last.fm/user/goramandvincent/"><?= $lastfm['caption'] ?></a> <i class="icon-lastfm-sign"></i></span>
 						</div>
 
 						<div class="image-message" id="instagram">
 							<img src="<?= $instagram['url']?>" alt="<?= $instagram['caption'];?>">
-							<span class="tweet"><a href="http://www.instagram.com/goramandvincent/"><?= $instagram['caption'];?> <i class="icon-instagram-sign"></i></a></span>
+							<span class="tweet"><a href="http://www.instagram.com/goramandvincent/"><?= $instagram['caption'];?></a> <i class="icon-instagram-sign"></i></span>
 						</div>
 				</aside>
 				<aside class="credit">
@@ -67,5 +73,10 @@
 		<audio id="get-lucky-audio">
 			<source src="/audio/get_lucky_clip.ogg" type="audio/ogg">
 		  	<source src="/audio/get_lucky_clip.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+		<audio id="police-siren-audio" preload="auto" autobuffer>
+			<source src="/audio/police_s.ogg" type="audio/ogg">
+		  	<source src="/audio/police_s.mp3" type="audio/mpeg">
 			Your browser does not support the audio element.
 		</audio>
