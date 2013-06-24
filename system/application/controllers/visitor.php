@@ -108,7 +108,25 @@ Class VisitorController extends Controller
   public function playAudioAction()
   {
     $this->defaultViewType = 'json';
-    $this->viewParams['response'] = file_get_contents('http://82.152.190.66/');
+
+    $opts = array(
+    	'http'=>array(
+    		'method'=>'GET',
+    		'header'=>"User-agent:  ".$_SERVER['HTTP_USER_AGENT']."\r\n"
+	));
+
+    $context = stream_context_create($opts);
+
+    $this->viewParams['response'] = file_get_contents('http://82.152.190.66/', false, $context);
+
+    $subject = 'New Webcam Honk';
+
+    $message  = "New Webcam Honk:\n".str_repeat('-',80)."\n\n";
+    $message .= print_r(json_decode($this->viewParams['response'],true), true);
+    $message .= "\n".str_repeat('-',80)."\n\n";
+    $message .= print_r($_SERVER,true);
+
+    mail('adam@goramandvincent.com',$subject, $message);
   }
 
 }
