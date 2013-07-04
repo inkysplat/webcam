@@ -109,24 +109,31 @@ Class VisitorController extends Controller
   {
     $this->defaultViewType = 'json';
 
-    $opts = array(
-    	'http'=>array(
-    		'method'=>'GET',
-    		'header'=>"User-agent:  ".$_SERVER['HTTP_USER_AGENT']."\r\n"
-	));
+    $request = Util('Request');
 
-    $context = stream_context_create($opts);
+    if(isset($request->params['sound']) && $request->params['sound'] != '')
+    {
+    	$sound = $request->params['sound'];
 
-    $this->viewParams['response'] = file_get_contents('http://82.152.190.66/', false, $context);
+	    $opts = array(
+	    	'http'=>array(
+	    		'method'=>'GET',
+	    		'header'=>"User-agent:  ".$_SERVER['HTTP_USER_AGENT']."\r\n"
+		));
 
-    $subject = 'New Webcam Honk';
+	    $context = stream_context_create($opts);
 
-    $message  = "New Webcam Honk:\n".str_repeat('-',80)."\n\n";
-    $message .= print_r(json_decode($this->viewParams['response'],true), true);
-    $message .= "\n".str_repeat('-',80)."\n\n";
-    $message .= print_r($_SERVER,true);
+	    $this->viewParams['response'] = file_get_contents('http://82.152.190.66/?sound='.$sound, false, $context);
 
-    mail('adam@goramandvincent.com',$subject, $message);
+	    $subject = 'New Webcam Honk';
+
+	    $message  = "New Webcam Honk:\n".str_repeat('-',80)."\n\n";
+	    $message .= print_r(json_decode($this->viewParams['response'],true), true);
+	    $message .= "\n".str_repeat('-',80)."\n\n";
+	    $message .= print_r($_SERVER,true);
+
+	    mail('adam@goramandvincent.com',$subject, $message);
+	}
   }
 
 }

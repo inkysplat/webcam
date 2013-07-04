@@ -144,18 +144,29 @@ setInterval(function(){
 		nextTick = 0;
 	}
 }, 5000);
-
+var audioPlaying = false;
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 $('.buzz-message').click(function(){
-  $('.icon-bullhorn').css({'color':'red'});
-  $('#police-siren-audio').trigger('play');
-  $.ajax({url: '/visitor/playAudio'}).done(
-  function(data){
-    console.log(data);
-    $('.icon-bullhorn').css({'color':'white'});
-  });
+  if(!audioPlaying){
+  	audioPlaying = true;//stops it firing multiple times
+  	$('.icon-bullhorn').css({'color':'red'});
+  	//random sound generator
+  	var randSound = sounds[Math.floor(Math.random()*sounds.length)];
+  	$('#'+randSound).trigger('play');
+  	$.ajax({url: '/visitor/playAudio/sound/'+randSound}).done(
+  	function(data){
+    	console.log(data);
+    	//hide the button for 30 seconds after
+    	$('.buzz-message').hide();
+    	setTimeout(function(){
+    		audioPlaying = false;
+    		$('.icon-bullhorn').css({'color':'white'});
+    		$('.buzz-message').show();
+    	},30000);
+  	});
+  }
 });
 
 //////////////////////////////////////////////////////////////

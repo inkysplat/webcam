@@ -16,6 +16,8 @@
         <script>
             var localClient = <?= $_SERVER['REMOTE_ADDR'] == '82.152.190.66'?'true':'false'?>;
             var staticStream = <?= isset($_GET['static'])?'true':'false';?>;
+
+            var sounds = ["<?= implode("\"\n,\"",array_keys($sounds));?>"];
         </script>
     </head>
     <body>

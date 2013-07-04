@@ -34,5 +34,23 @@ Class IndexController extends Controller{
 			$this->viewParams['github'] .= $this->_api->getGithubCommitter('username').')';
 		}
 
+		$sounds = array();
+		if(is_dir(PUBLIC_PATH.'/audio'))
+		{
+			$files = scandir(PUBLIC_PATH.'/audio');
+			foreach($files as $file){
+				if(substr($file,-4) == '.mp3'){
+					$id = trim(str_replace(' ','_',basename($file,'.mp3')));
+					$sounds[$id]['mp3'] = '/audio/'.basename($file);					
+				}
+				if(substr($file,-4) == '.ogg'){
+					$id = trim(str_replace(' ','_',basename($file,'.ogg')));
+					$sounds[$id]['ogg'] = '/audio/'.basename($file);				
+				}
+			}
+		}
+
+		$this->viewParams['sounds'] = $sounds;
+
 	}
 }

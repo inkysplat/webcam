@@ -70,13 +70,14 @@
 			</footer>
 		</article>
 
-		<audio id="get-lucky-audio">
-			<source src="/audio/get_lucky_clip.ogg" type="audio/ogg">
-		  	<source src="/audio/get_lucky_clip.mp3" type="audio/mpeg">
-			Your browser does not support the audio element.
-		</audio>
-		<audio id="police-siren-audio" preload="auto" autobuffer>
-			<source src="/audio/police_s.ogg" type="audio/ogg">
-		  	<source src="/audio/police_s.mp3" type="audio/mpeg">
-			Your browser does not support the audio element.
-		</audio>
+		<?php foreach($sounds as $id=>$sound):?>
+			<audio id="<?= $id;?>" preload="auto" autobuffer>
+				<?php if(isset($sound['mp3'])):?>
+				<source src="<?= $sound['mp3'];?>" type="audio/mpeg">
+				<?php endif;?>
+				<?php if(isset($sound['ogg'])):?>
+				<source src="<?= $sound['ogg'];?>" type="audio/ogg">
+				<?php endif;?>
+				Your browser does not support the audio element.
+			</audio>
+		<?php endforeach;?>
