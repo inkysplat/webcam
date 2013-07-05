@@ -64,7 +64,11 @@
 				</aside>
 				<aside class="credit">
 					<ul class="float">
-						<li><a href="" class="gv">Goram+Vincent</a></li>
+						<li>
+							<a href="http://www.goramandvincent.com/" class="gv fancybox" data-fancybox-type="iframe">
+								Goram+Vincent
+							</a>
+						</li>
 					</ul>
 				</aside>
 			</footer>
