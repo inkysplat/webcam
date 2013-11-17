@@ -127,6 +127,10 @@ require_once(INCLUDE_PATH . 'functions.php');
 require_once(INCLUDE_PATH . 'bootstrap.php');
 
 //BANGARANG!!
-$bs = new Bootstrap('default');
+$config = 'default';
+if(file_exists(CONFIG_PATH.php_uname('n').'.xml')){
+    $config = php_uname('n');
+}
+$bs = new Bootstrap($config);
 $bs->dispatch();
 echo $bs->render();

@@ -60,7 +60,7 @@ if(localClient)
 		var streamUrl = '/stream.php';
 	}
 }
-$('#camara-canvas').css({'background-image':"url("+streamUrl+")"});
+//$('#camara-canvas').css({'background-image':"url("+streamUrl+")"});
 $('.ticker').fadeIn();
 
 $.ajax({

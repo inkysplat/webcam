@@ -1,11 +1,13 @@
 .project
 
 system/application/config/default.xml
+system/application/config/*
 
 system/cache/*
 system/log/*
 system/tmp/*
 
+public_html/reactions/*
 public_html/webcam/*
 public_html/webcam.jpg
 

@@ -15,11 +15,14 @@ date_default_timezone_set('Europe/London');
 ///////////////////////////////////////////////////////////////////////////////////
 
 
+staticImage();
+die();
+
 /* Usage: <img src="thisfile.php"> */
 $server = "82.152.190.66"; // camera server
 $port = 8443; // camera server port
 $time = date('H');
-if(isset($_GET['static']) || in_array($time,array('00','01','02','03','04','05')))
+if(isset($_GET['static']) || in_array($time,array('00','01','02','03','04','05','19','20','21','22','23')))
 {
 	staticImage();
 }
@@ -44,11 +47,11 @@ function streamImage()
 
 function staticImage()
 {
-	header('Content-Type: image/jpeg;');
-    header('Content-Length: ' . filesize('webcam.jpg'));
+	header('Content-Type: image/png;');
+    header('Content-Length: ' . filesize('webcam.png'));
     ob_clean();
     flush();
-    readfile('webcam.jpg');
+    readfile('webcam.png');
     exit;
 }
 ?>
